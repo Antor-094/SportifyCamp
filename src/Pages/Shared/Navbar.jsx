@@ -38,7 +38,7 @@ const Navbar = ({ loggedIn, userProfilePicture }) => {
   );
 
   return (
-    <nav className="navbar bg-white md:fixed sticky z-10 bg-opacity-[0.4] container rounded-lg">
+    <nav className="navbar bg-white md:fixed sticky z-10 bg-opacity-[0.7] container rounded-md">
       <div className="navbar-start">
         <div className="dropdown">
           <label tabIndex={0} className="btn btn-ghost lg:hidden">
