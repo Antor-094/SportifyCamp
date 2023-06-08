@@ -1,0 +1,63 @@
+[
+    {
+      "_id": "1",
+      "courseName": "Basketball Training",
+      "courseImage": "https://i.ibb.co/8Y3r4mZ/kids-playing-basketball.jpg",
+      "instructorName": "John Smith",
+      "instructorId": "123",
+      "availableSeats": 10,
+      "price": 50,
+      "enrolledStudents": 7
+    },
+    {
+      "_id": "2",
+      "courseName": "Soccer Skills",
+      "courseImage": "https://i.ibb.co/Ny2Kr5J/kids-Playing-Soccer-Summer-Camp-i-Stock.jpg",
+      "instructorName": "Sarah Johnson",
+      "instructorId": "456",
+      "availableSeats": 15,
+      "price": 40,
+      "enrolledStudents": 4
+    },
+    {
+      "_id": "3",
+      "courseName": "Cricket Lessons",
+      "courseImage": "https://i.ibb.co/YLXHbJt/Cricket-Going-Out.jpg",
+      "instructorName": "Michael Davis",
+      "instructorId": "789",
+      "availableSeats": 8,
+      "price": 60,
+      "enrolledStudents": 6
+    },
+    {
+      "_id": "4",
+      "courseName": "Tennis Workshop",
+      "courseImage": "https://i.ibb.co/F3PXyKf/tenis.jpg",
+      "instructorName": "Emily Wilson",
+      "instructorId": "987",
+      "availableSeats": 12,
+      "price": 35,
+      "enrolledStudents": 8
+    },
+    {
+      "_id": "5",
+      "courseName": "Baseball Training",
+      "courseImage": "https://i.ibb.co/ZGbY9Qm/baseball-top.jpg",
+      "instructorName": "David Lee",
+      "instructorId": "654",
+      "availableSeats": 0,
+      "price": 55,
+      "enrolledStudents": 9
+    },
+    {
+      "_id": "6",
+      "courseName": "Volleyball Camp",
+      "courseImage": "https://i.ibb.co/1LLwJhX/bollyboll.jpg",
+      "instructorName": "Jennifer Brown",
+      "instructorId": "321",
+      "availableSeats": 20,
+      "price": 30,
+      "enrolledStudents": 10
+    }
+  ]
+  

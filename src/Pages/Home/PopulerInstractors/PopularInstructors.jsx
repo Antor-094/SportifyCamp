@@ -1,4 +1,5 @@
 /* eslint-disable react/no-unescaped-entities */
+// import { useQuery } from "@tanstack/react-query";
 import SectionTitle from "../../../Components/SectionTitle/SectionTitle";
 import InstructorsCard from "../../../Components/card/InstructorsCard";
 
@@ -6,6 +7,7 @@ import InstructorsCard from "../../../Components/card/InstructorsCard";
 
 
 const PopularInstructors = () => {
+  
   return (
     <div>
       <SectionTitle
