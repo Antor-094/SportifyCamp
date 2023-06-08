@@ -1,12 +1,24 @@
 import { Link } from "react-router-dom";
-import { HiEye, HiEyeOff } from "react-icons/hi";
 import "./SignUp.css";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
+import useAuth from "../../Hooks/useAuth";
+
+const img_hosting_token = import.meta.env.VITE_imgbb;
 
 const SignUp = () => {
-  const [showPassword, setShowPassword] = useState(false);
-  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const { createUser, updateUserProfile } = useAuth();
+  const [passwordVisible, setPasswordVisible] = useState(false);
+  const [confirmPasswordVisible, setConfirmPasswordVisible] = useState(false);
+  const img_hosting_url = `https://api.imgbb.com/1/upload?key=${img_hosting_token}`;
+
+  const togglePasswordVisibility = () => {
+    setPasswordVisible(!passwordVisible);
+  };
+
+  const toggleConfirmPasswordVisibility = () => {
+    setConfirmPasswordVisible(!confirmPasswordVisible);
+  };
 
   const {
     register,
@@ -14,20 +26,34 @@ const SignUp = () => {
     formState: { errors },
     watch,
   } = useForm();
+  const onSubmit = (data) => {
+    console.log(data);
+    const formData = new FormData();
+    formData.append("image", data.photo[0]);
 
-  const onSubmit = (data) => console.log(data);
+    fetch(img_hosting_url, {
+      method: "POST",
+      body: formData,
+    })
+      .then((res) => res.json())
+      .then((imgResponse) => {
+        if (imgResponse.success) {
+          const imgURL = imgResponse.data.display_url;
+          createUser(data.email, data.password)
+            .then((result) => {
+              console.log(result.user);
+              updateUserProfile(data.name, imgURL);
+            })
+            .catch((err) => {
+              console.log(err);
+            });
+        }
+      });
+  };
 
   const password = watch("password");
   const confirmPassword = watch("confirmPassword");
   const passwordMismatch = password !== confirmPassword;
-
-  const togglePasswordVisibility = () => {
-    setShowPassword(!showPassword);
-  };
-
-  const toggleConfirmPasswordVisibility = () => {
-    setShowConfirmPassword(!showConfirmPassword);
-  };
 
   return (
     <div className="py-32 flex justify-center">
@@ -60,26 +86,28 @@ const SignUp = () => {
               <span className="text-accent">This field is required</span>
             )}
           </div>
-          <div className="input-groups">
+
+          <div className="input-groups ">
             <label htmlFor="password">Password</label>
-            <div className="password-input-container">
+            <div className="password-input">
               <input
                 {...register("password", {
                   required: true,
                   minLength: 6,
                   pattern: /(?=.*[A-Z])(?=.*[!@#$&*])/,
                 })}
-                type={showPassword ? "text" : "password"}
+                type={passwordVisible ? "text" : "password"}
                 name="password"
                 id="password"
                 placeholder=""
               />
-              <div
-                className="password-toggle-icon"
+              <button
+                type="button"
+                className="password-toggle"
                 onClick={togglePasswordVisibility}
               >
-                {showPassword ? <HiEyeOff /> : <HiEye />}
-              </div>
+                {passwordVisible ? "Hide" : "Show"}
+              </button>
             </div>
             {errors.password && (
               <span className="text-accent">This field is required</span>
@@ -95,24 +123,25 @@ const SignUp = () => {
           </div>
           <div className="input-groups">
             <label htmlFor="confirmPassword">Confirm Password</label>
-            <div className="password-input-container">
+            <div className="password-input">
               <input
                 {...register("confirmPassword", {
                   required: true,
                   validate: (value) =>
                     value === password || "Passwords do not match",
                 })}
-                type={showConfirmPassword ? "text" : "password"}
+                type={confirmPasswordVisible ? "text" : "password"}
                 name="confirmPassword"
                 id="confirmPassword"
                 placeholder=""
               />
-              <div
-                className="password-toggle-icon"
+              <button
+                type="button"
+                className="password-toggle"
                 onClick={toggleConfirmPasswordVisibility}
               >
-                {showConfirmPassword ? <HiEyeOff /> : <HiEye />}
-              </div>
+                {confirmPasswordVisible ? "Hide" : "Show"}
+              </button>
             </div>
             {errors.confirmPassword && (
               <span className="text-accent">This field is required</span>
@@ -145,7 +174,7 @@ const SignUp = () => {
         </div>
         <div className="my-8 flex justify-center">
           <button className="social-icon">
-          <svg
+            <svg
               xmlns="http://www.w3.org/2000/svg"
               preserveAspectRatio="xMidYMid"
               viewBox="0 0 256 262"

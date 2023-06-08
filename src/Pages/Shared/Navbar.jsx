@@ -1,6 +1,11 @@
 import { Link, NavLink } from "react-router-dom";
+import useAuth from "../../Hooks/useAuth";
 
 const Navbar = ({ loggedIn, userProfilePicture }) => {
+  const {logOut} = useAuth()
+  const handelLogOut=()=>{
+  logOut()
+  }
   const options = (
     <>
       <li>
@@ -14,26 +19,31 @@ const Navbar = ({ loggedIn, userProfilePicture }) => {
         </NavLink>
       </li>
       <li>
-        <Link to="/instructors" className="hover:text-primary transition-colors duration-300">Instructors</Link>
+        <Link
+          to="/instructors"
+          className="hover:text-primary transition-colors duration-300"
+        >
+          Instructors
+        </Link>
       </li>
       <li>
-        <Link to="/classes" className="hover:text-primary transition-colors duration-300">Classes</Link>
+        <Link
+          to="/classes"
+          className="hover:text-primary transition-colors duration-300"
+        >
+          Classes
+        </Link>
       </li>
       {loggedIn && (
-        <>
-          <li>
-            <Link to="/dashboard" className="hover:text-primary transition-colors duration-300">Dashboard</Link>
-          </li>
-          <li>
-            <div className="avatar">
-              <div className="w-9 rounded-full">
-                <img src={userProfilePicture} />
-              </div>
-            </div>
-          </li>
-        </>
+        <li>
+          <Link
+            to="/dashboard"
+            className="hover:text-primary transition-colors duration-300"
+          >
+            Dashboard
+          </Link>
+        </li>
       )}
-      
     </>
   );
 
@@ -42,7 +52,7 @@ const Navbar = ({ loggedIn, userProfilePicture }) => {
       <div className="navbar-start">
         <div className="dropdown">
           <label tabIndex={0} className="btn btn-ghost lg:hidden">
-            <svg 
+            <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-5 w-5 text-black "
               fill="none"
@@ -59,7 +69,7 @@ const Navbar = ({ loggedIn, userProfilePicture }) => {
           </label>
           <ul
             tabIndex={0}
-            className="menu menu-compact dropdown-content text-white mt-3 p-2 shadow  bg-[#111827] rounded-box w-52"
+            className="menu menu-compact dropdown-content text-white mt-3 p-2 shadow bg-[#111827] rounded-box w-52"
           >
             {options}
           </ul>
@@ -69,7 +79,6 @@ const Navbar = ({ loggedIn, userProfilePicture }) => {
           className="lg:text-3xl font-raleway text-primary font-black"
         >
           SportifyCamp
-          
         </Link>
       </div>
       <div className="navbar-center hidden lg:flex">
@@ -78,8 +87,22 @@ const Navbar = ({ loggedIn, userProfilePicture }) => {
         </ul>
       </div>
       <div className="navbar-end">
-        {!loggedIn && (
-          <Link to={"/login"} className="btn btn-primary normal-case btn-sm hover:bg-primary transition-colors duration-300">
+        {loggedIn ? (
+          <>
+            <button onClick={handelLogOut} className="btn btn-primary normal-case btn-sm hover:bg-primary transition-colors duration-300">
+              Logout
+            </button>
+            <div className="avatar ml-3">
+              <div className="w-9 rounded-full">
+                <img src={userProfilePicture} alt="User Profile" />
+              </div>
+            </div>
+          </>
+        ) : (
+          <Link
+            to="/login"
+            className="btn btn-primary normal-case btn-sm hover:bg-primary transition-colors duration-300"
+          >
             Login
           </Link>
         )}

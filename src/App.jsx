@@ -1,16 +1,18 @@
 import { Outlet } from "react-router-dom";
 import Navbar from "./Pages/Shared/Navbar";
 import Footer from "./Pages/Shared/Footer";
+import useAuth from "./Hooks/useAuth";
 
 
 const App = () => {
+  const {user}=useAuth()
   return (
     <>
       <div className="mx-auto container">
         <Navbar
-          loggedIn={null}
+          loggedIn={user}
           userProfilePicture={
-            "https://i.ibb.co/6cMVyxm/In-Shot-20211104-190909311.png"
+            user?.photoURL
           }
         />
       </div>
