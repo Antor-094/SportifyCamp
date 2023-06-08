@@ -6,7 +6,7 @@ import useAuth from "../../Hooks/useAuth";
 
 const Login = () => {
   // TODO: password validation
-  const { signIn } = useAuth();
+  const { signIn ,googleSignIn} = useAuth();
   const [passwordVisible, setPasswordVisible] = useState(false);
   const {
     register,
@@ -24,6 +24,13 @@ const Login = () => {
       });
   };
 
+  const handleGoogleLogin=()=>{
+    googleSignIn().then((result)=>{
+      console.log(result.user)
+    }).catch((err)=>{
+      console.log(err)
+    })
+  }
   const togglePasswordVisibility = () => {
     setPasswordVisible(!passwordVisible);
   };
@@ -74,7 +81,7 @@ const Login = () => {
           <div className="line"></div>
         </div>
         <div className="my-8 flex justify-center">
-          <button className="social-icon">
+          <button onClick={handleGoogleLogin} className="social-icon">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               preserveAspectRatio="xMidYMid"

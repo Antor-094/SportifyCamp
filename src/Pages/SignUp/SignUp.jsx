@@ -7,7 +7,7 @@ import useAuth from "../../Hooks/useAuth";
 const img_hosting_token = import.meta.env.VITE_imgbb;
 
 const SignUp = () => {
-  const { createUser, updateUserProfile } = useAuth();
+  const { createUser, updateUserProfile,googleSignIn } = useAuth();
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [confirmPasswordVisible, setConfirmPasswordVisible] = useState(false);
   const img_hosting_url = `https://api.imgbb.com/1/upload?key=${img_hosting_token}`;
@@ -50,6 +50,14 @@ const SignUp = () => {
         }
       });
   };
+
+  const handleGoogleLogin=()=>{
+    googleSignIn().then((result)=>{
+      console.log(result.user)
+    }).catch((err)=>{
+      console.log(err)
+    })
+  }
 
   const password = watch("password");
   const confirmPassword = watch("confirmPassword");
@@ -173,7 +181,7 @@ const SignUp = () => {
           <div className="line"></div>
         </div>
         <div className="my-8 flex justify-center">
-          <button className="social-icon">
+          <button onClick={handleGoogleLogin} className="social-icon">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               preserveAspectRatio="xMidYMid"
