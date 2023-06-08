@@ -19,10 +19,11 @@ const Home = () => {
             <div className="my-12">
             <PopularClasses></PopularClasses>
             </div>
-            <Gallery></Gallery>
+           
             <div>
             <PopularInstructors></PopularInstructors>
             </div>
+            <Gallery></Gallery>
             <div>
                 <ServicesDetails></ServicesDetails>
             </div>
