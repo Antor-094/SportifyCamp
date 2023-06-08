@@ -50,6 +50,40 @@ const Banner = () => {
           <a href='#' className='bg-white text-black py-2 px-4 rounded-full font-bold text-lg hover:bg-gray-200 transition-colors duration-300'>Sign up now</a>
         </div>
       </div>
+      <div className='relative h-[90vh]'>
+        <div className='absolute inset-0'>
+          <img className='w-full h-full object-cover' src="https://i.ibb.co/cNghdGL/free-photo-of-children-playing-football.jpg" alt="Image 3" />
+          <div className='absolute inset-0 bg-black opacity-50'></div> {/* added background overlay */}
+        </div>
+        <div className='absolute inset-0 flex flex-col justify-center items-center text-white'>
+          <h3 className='text-4xl font-bold mb-4'>Discover your passion for sports</h3>
+          <p className='text-lg text-center font-light mb-8'>Our summer camp is the perfect place to discover your passion for sports and develop your skills in a fun and supportive environment.</p>
+          <a href='#' className='bg-white text-black py-2 px-4 rounded-full font-bold text-lg hover:bg-gray-200 transition-colors duration-300'>Sign up now</a>
+        </div>
+      </div>
+      <div className='relative h-[90vh]'>
+        <div className='absolute inset-0'>
+          <img className='w-full h-full object-cover' src="https://i.ibb.co/3yrkWZn/pexels-photo-8813526.jpg" alt="Image 3" />
+          <div className='absolute inset-0 bg-black opacity-50'></div> {/* added background overlay */}
+        </div>
+        <div className='absolute inset-0 flex flex-col justify-center items-center text-white'>
+          <h3 className='text-4xl font-bold mb-4'>Experience the great outdoors</h3>
+          <p className='text-lg text-center font-light mb-8'>Our summer camp offers a range of outdoor activities that will help you connect with nature and experience the great outdoors.</p>
+          <a href='#' className='bg-white text-black py-2 px-4 rounded-full font-bold text-lg hover:bg-gray-200 transition-colors duration-300'>Sign up now</a>
+        </div>
+      </div>
+      <div className='relative h-[90vh]'>
+        <div className='absolute inset-0'>
+          <img className='w-full h-full object-cover' src="https://i.ibb.co/KV4fcXf/pexels-photo-1752502.jpg" alt="Image 3" />
+          <div className='absolute inset-0 bg-black opacity-50'></div> {/* added background overlay */}
+        </div>
+        <div className='absolute inset-0 flex flex-col justify-center items-center text-white'>
+          <h3 className='text-4xl font-bold mb-4'>Build confidence and self-esteem</h3>
+          <p className='text-lg text-center font-light mb-8'>Our summer camp is designed to help students build confidence and self-esteem through sports and outdoor activities.</p>
+          <a href='#' className='bg-white text-black py-2 px-4 rounded-full font-bold text-lg hover:bg-gray-200 transition-colors duration-300'>Sign up now</a>
+        </div>
+      </div>
+      
     </Slider>
   );
 };

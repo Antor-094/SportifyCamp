@@ -1,24 +1,40 @@
 import { Link } from "react-router-dom";
+import { useState } from "react";
 import "./Login.css";
 const Login = () => {
+    const [passwordVisible, setPasswordVisible] = useState(false);
+
+    const togglePasswordVisibility = () => {
+      setPasswordVisible(!passwordVisible);
+    };
   return (
     <div className="py-32 flex justify-center">
       <div className="form-container w-[90%] md:w-[30%]">
         <p className="title">Login</p>
         <form className="form">
           <div className="input-groups">
-            <label htmlFor="username">Username</label>
-            <input type="text" name="username" id="username" placeholder="" />
+            <label htmlFor="username">Email</label>
+            <input type="email" name="email" id="username" placeholder="" />
           </div>
           <div className="input-groups">
             <label htmlFor="password">Password</label>
-            <input
-              type="password"
-              name="password"
-              id="password"
-              placeholder=""
-            />
+            <div className="password-input">
+              <input
+                type={passwordVisible ? "text" : "password"}
+                name="password"
+                id="password"
+                placeholder=""
+              />
+              <button
+                type="button"
+                className="password-toggle"
+                onClick={togglePasswordVisibility}
+              >
+                {passwordVisible ? "Hide" : "Show"}
+              </button>
+            </div>
           </div>
+
           <div className="flex justify-center mt-5">
             <button className="login"> Login</button>
           </div>
@@ -57,7 +73,11 @@ const Login = () => {
         </div>
         <p className="signup">
           Do not have an account?
-          <Link rel="noopener noreferrer" href="#" className="link link-hover link-accent">
+          <Link
+            rel="noopener noreferrer"
+            to={"/signup"}
+            className="link link-hover link-accent"
+          >
             Sign up
           </Link>
         </p>

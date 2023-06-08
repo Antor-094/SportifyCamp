@@ -6,7 +6,7 @@ const Navbar = ({ loggedIn, userProfilePicture }) => {
       <li>
         <NavLink
           className={({ isActive }) =>
-            isActive ? "text-primary font-bold" : "text-white"
+            isActive ? "text-primary font-bold" : ""
           }
           to="/"
         >
@@ -14,15 +14,15 @@ const Navbar = ({ loggedIn, userProfilePicture }) => {
         </NavLink>
       </li>
       <li>
-        <Link to="/instructors" className="text-white hover:text-primary transition-colors duration-300">Instructors</Link>
+        <Link to="/instructors" className="hover:text-primary transition-colors duration-300">Instructors</Link>
       </li>
       <li>
-        <Link to="/classes" className="text-white hover:text-primary transition-colors duration-300">Classes</Link>
+        <Link to="/classes" className="hover:text-primary transition-colors duration-300">Classes</Link>
       </li>
       {loggedIn && (
         <>
           <li>
-            <Link to="/dashboard" className="text-white hover:text-primary transition-colors duration-300">Dashboard</Link>
+            <Link to="/dashboard" className="hover:text-primary transition-colors duration-300">Dashboard</Link>
           </li>
           <li>
             <div className="avatar">
@@ -38,13 +38,13 @@ const Navbar = ({ loggedIn, userProfilePicture }) => {
   );
 
   return (
-    <nav className="navbar bg-black md:fixed sticky z-10 bg-opacity-0 container text-white">
+    <nav className="navbar bg-[#555273] md:fixed sticky z-10 bg-opacity-0 container">
       <div className="navbar-start">
         <div className="dropdown">
           <label tabIndex={0} className="btn btn-ghost lg:hidden">
-            <svg
+            <svg 
               xmlns="http://www.w3.org/2000/svg"
-              className="h-5 w-5 text-white"
+              className="h-5 w-5 text-black "
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -59,7 +59,7 @@ const Navbar = ({ loggedIn, userProfilePicture }) => {
           </label>
           <ul
             tabIndex={0}
-            className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-[#111827] rounded-box w-52"
+            className="menu menu-compact dropdown-content text-white mt-3 p-2 shadow  bg-[#111827] rounded-box w-52"
           >
             {options}
           </ul>
@@ -68,19 +68,19 @@ const Navbar = ({ loggedIn, userProfilePicture }) => {
           to="/"
           className="lg:text-3xl font-raleway text-primary font-black"
         >
-          CampSporty
+          SportifyCamp
           <br />
           <span className="text-sm font-bold">Sports Academy</span>
         </Link>
       </div>
       <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal px-1 text-white font-semibold">
+        <ul className="menu menu-horizontal px-1 text-black font-semibold">
           {options}
         </ul>
       </div>
       <div className="navbar-end">
         {!loggedIn && (
-          <Link to={"/login"} className="btn btn-accent normal-case btn-sm hover:bg-primary transition-colors duration-300">
+          <Link to={"/login"} className="btn btn-primary normal-case btn-sm hover:bg-primary transition-colors duration-300">
             Login
           </Link>
         )}

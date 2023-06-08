@@ -1,41 +1,138 @@
-import { Link } from 'react-router-dom';
-import './SignUp.css';
+import { Link } from "react-router-dom";
+import { HiEye, HiEyeOff } from "react-icons/hi";
+import "./SignUp.css";
+import { useForm } from "react-hook-form";
+import { useState } from "react";
 
 const SignUp = () => {
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    watch,
+  } = useForm();
+
+  const onSubmit = (data) => console.log(data);
+
+  const password = watch("password");
+  const confirmPassword = watch("confirmPassword");
+  const passwordMismatch = password !== confirmPassword;
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
+
+  const toggleConfirmPasswordVisibility = () => {
+    setShowConfirmPassword(!showConfirmPassword);
+  };
+
   return (
     <div className="py-32 flex justify-center">
       <div className="form-container w-[90%] md:w-[30%]">
         <p className="title">Sign Up</p>
-        <form className="form">
+        <form onSubmit={handleSubmit(onSubmit)} className="form">
           <div className="input-groups">
             <label htmlFor="name">Name</label>
-            <input type="text" name="name" id="name" placeholder="" />
+            <input
+              {...register("name", { required: true })}
+              type="text"
+              name="name"
+              id="name"
+              placeholder=""
+            />
+            {errors.name && (
+              <span className="text-accent">This field is required</span>
+            )}
           </div>
           <div className="input-groups">
             <label htmlFor="email">Email</label>
-            <input type="email" name="email" id="email" placeholder="" />
+            <input
+              {...register("email", { required: true })}
+              type="email"
+              name="email"
+              id="email"
+              placeholder=""
+            />
+            {errors.email && (
+              <span className="text-accent">This field is required</span>
+            )}
           </div>
           <div className="input-groups">
             <label htmlFor="password">Password</label>
-            <input
-              type="password"
-              name="password"
-              id="password"
-              placeholder=""
-            />
+            <div className="password-input-container">
+              <input
+                {...register("password", {
+                  required: true,
+                  minLength: 6,
+                  pattern: /(?=.*[A-Z])(?=.*[!@#$&*])/,
+                })}
+                type={showPassword ? "text" : "password"}
+                name="password"
+                id="password"
+                placeholder=""
+              />
+              <div
+                className="password-toggle-icon"
+                onClick={togglePasswordVisibility}
+              >
+                {showPassword ? <HiEyeOff /> : <HiEye />}
+              </div>
+            </div>
+            {errors.password && (
+              <span className="text-accent">This field is required</span>
+            )}
+            {errors.password?.type === "minLength" && (
+              <p className="text-accent">Password must be 6 characters</p>
+            )}
+            {errors.password?.type === "pattern" && (
+              <p className="text-red-600">
+                Password must have one Uppercase, and one special character.
+              </p>
+            )}
           </div>
           <div className="input-groups">
-            <label htmlFor="confirm-password">Confirm Password</label>
-            <input
-              type="password"
-              name="confirm-password"
-              id="confirm-password"
-              placeholder=""
-            />
+            <label htmlFor="confirmPassword">Confirm Password</label>
+            <div className="password-input-container">
+              <input
+                {...register("confirmPassword", {
+                  required: true,
+                  validate: (value) =>
+                    value === password || "Passwords do not match",
+                })}
+                type={showConfirmPassword ? "text" : "password"}
+                name="confirmPassword"
+                id="confirmPassword"
+                placeholder=""
+              />
+              <div
+                className="password-toggle-icon"
+                onClick={toggleConfirmPasswordVisibility}
+              >
+                {showConfirmPassword ? <HiEyeOff /> : <HiEye />}
+              </div>
+            </div>
+            {errors.confirmPassword && (
+              <span className="text-accent">This field is required</span>
+            )}
+            {passwordMismatch && (
+              <span className="text-accent">Passwords do not match</span>
+            )}
           </div>
           <div className="input-groups">
             <label htmlFor="photo">Photo</label>
-            <input className="inpdddut" name="photo" id="photo" type="file" />
+            <input
+              {...register("photo", { required: true })}
+              className="inpdddut"
+              name="photo"
+              id="photo"
+              type="file"
+            />
+            {errors.photo && (
+              <span className="text-accent">This field is required</span>
+            )}
           </div>
           <div className="flex justify-center mt-5">
             <button className="login">Sign Up</button>
@@ -48,7 +145,7 @@ const SignUp = () => {
         </div>
         <div className="my-8 flex justify-center">
           <button className="social-icon">
-            <svg
+          <svg
               xmlns="http://www.w3.org/2000/svg"
               preserveAspectRatio="xMidYMid"
               viewBox="0 0 256 262"
