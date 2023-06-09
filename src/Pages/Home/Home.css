@@ -1,0 +1,26 @@
+/* Define styles for the light theme */
+.light-theme {
+    /* Define background color, text color, and other styles for the light theme */
+    background-color: #ffffff;
+    color: #333333;
+  }
+  
+  /* Define styles for the dark theme */
+  .dark-theme {
+    /* Define background color, text color, and other styles for the dark theme */
+    background-color: #1f1f1f;
+    color: #ffffff;
+  }
+  
+  /* Define styles for the theme toggle button */
+  .theme-toggle-btn {
+    /* Define styles for the theme toggle button */
+    background-color: #65799b;
+    color: #333333;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+  }
+  

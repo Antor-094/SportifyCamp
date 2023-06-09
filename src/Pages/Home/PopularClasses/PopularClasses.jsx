@@ -9,7 +9,7 @@ const PopularClasses = () => {
   const {data:courses=[]}=useQuery({
     queryKey:['courses'],
     queryFn: async()=>{
-      const res = await fetch('courses.json');
+      const res = await fetch('http://localhost:5000/courses');
       return res.json()
     }
   })

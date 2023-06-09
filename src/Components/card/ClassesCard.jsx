@@ -22,7 +22,7 @@ const ClassesCard = ({ course }) => {
           <h2 className="card-title text-lg font-bold mb-2 text-[#65799b]">{course?.courseName}</h2>
           <p className="text-sm text-[#65799b] font-semibold">Instructor Name: {course?.instructorName}</p>
           <p className="text-sm text-[#65799b] font-semibold">Available Seats: {course?.availableSeats}</p>
-          <p className="text-sm text-[#65799b] font-semibold">Available Seats: {course?.enrolledStudents}</p>
+          <p className="text-sm text-[#65799b] font-semibold">Enrolled Seats: {course?.enrolledStudents}</p>
           <p className="text-sm text-[#65799b] font-semibold">Price: {course?.price}</p>
         </div>
         <div className="card-actions justify-end">

@@ -7,7 +7,7 @@
       "instructorId": "123",
       "availableSeats": 10,
       "price": 50,
-      "enrolledStudents": 7
+      "enrolledStudents": 12
     },
     {
       "_id": "2",
@@ -15,9 +15,9 @@
       "courseImage": "https://i.ibb.co/Ny2Kr5J/kids-Playing-Soccer-Summer-Camp-i-Stock.jpg",
       "instructorName": "Sarah Johnson",
       "instructorId": "456",
-      "availableSeats": 15,
+      "availableSeats": 25,
       "price": 40,
-      "enrolledStudents": 4
+      "enrolledStudents": 18
     },
     {
       "_id": "3",
@@ -25,9 +25,9 @@
       "courseImage": "https://i.ibb.co/YLXHbJt/Cricket-Going-Out.jpg",
       "instructorName": "Michael Davis",
       "instructorId": "789",
-      "availableSeats": 8,
+      "availableSeats": 11,
       "price": 60,
-      "enrolledStudents": 6
+      "enrolledStudents": 18
     },
     {
       "_id": "4",
@@ -37,7 +37,7 @@
       "instructorId": "987",
       "availableSeats": 12,
       "price": 35,
-      "enrolledStudents": 8
+      "enrolledStudents": 17
     },
     {
       "_id": "5",
@@ -47,7 +47,7 @@
       "instructorId": "654",
       "availableSeats": 0,
       "price": 55,
-      "enrolledStudents": 9
+      "enrolledStudents": 14
     },
     {
       "_id": "6",
