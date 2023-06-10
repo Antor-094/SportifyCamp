@@ -85,7 +85,7 @@ const Gallery = () => {
   
 
   return (
-    <div className="container md:w-[80%]  mx-auto my-12 p-2  border-gray-300 shadow-lg">
+    <div className="container w-[90%] md:w-[70%]  mx-auto my-12 p-2  border-gray-300 shadow-lg">
  <SectionTitle heading={'Gallery'} subHeading='WATCH OUR SUMMER EVENTS'></SectionTitle>
   <div data-aos="zoom-in-up" className="grid grid-cols-1 md:grid-cols-3 gap-3">
     {images.map(image => {

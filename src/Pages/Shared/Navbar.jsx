@@ -1,11 +1,14 @@
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useLocation } from "react-router-dom";
 import useAuth from "../../Hooks/useAuth";
 
 const Navbar = ({ loggedIn, userProfilePicture }) => {
-  const {logOut} = useAuth()
-  const handelLogOut=()=>{
-  logOut()
-  }
+  const { logOut } = useAuth();
+  const handleLogOut = () => {
+    logOut();
+  };
+
+  const location = useLocation();
+
   const options = (
     <>
       <li>
@@ -36,12 +39,14 @@ const Navbar = ({ loggedIn, userProfilePicture }) => {
       </li>
       {loggedIn && (
         <li>
-          <Link
+          <NavLink
             to="/dashboard"
-            className="hover:text-primary transition-colors duration-300"
+            className={({ isActive }) =>
+            isActive ? "text-primary font-bold" : ""
+          }
           >
             Dashboard
-          </Link>
+          </NavLink>
         </li>
       )}
     </>
@@ -87,16 +92,22 @@ const Navbar = ({ loggedIn, userProfilePicture }) => {
         </ul>
       </div>
       <div className="navbar-end">
-        {loggedIn ? (
+        {loggedIn || location.pathname === "/dashboard" ? (
           <>
-            <button onClick={handelLogOut} className="btn btn-primary normal-case btn-sm hover:bg-primary transition-colors duration-300">
-              Logout
-            </button>
-            <div className="avatar ml-3">
+          <div className="avatar mr-3 tooltip tooltip-left" data-tip={loggedIn.displayName}>
               <div className="w-9 rounded-full">
                 <img src={userProfilePicture} alt="User Profile" />
               </div>
             </div>
+            {/* className="flex tooltip sm:tooltip-left tooltip-top items-center"
+                data-tip={user.displayName} */}
+            <button
+              onClick={handleLogOut}
+              className="btn btn-primary normal-case btn-sm hover:bg-primary transition-colors duration-300"
+            >
+              Logout
+            </button>
+            
           </>
         ) : (
           <Link

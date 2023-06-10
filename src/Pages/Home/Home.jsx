@@ -37,7 +37,7 @@ const Home = () => {
         <PopularInstructors />
       </div>
       <Gallery />
-      <div>
+      <div className='pb-7'>
         <ServicesDetails />
       </div>
     </div>
