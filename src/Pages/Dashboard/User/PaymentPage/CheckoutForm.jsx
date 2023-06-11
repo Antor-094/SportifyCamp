@@ -6,7 +6,7 @@ import './CheckoutForm.css'
 import { useEffect, useState } from "react";
 import axios from "axios";
 import useAuth from "../../../../Hooks/useAuth";
-const CheckoutForm = ({paymentCourse}) => {
+const CheckoutForm = ({paymentCourse,price}) => {
     const stripe = useStripe();
 const elements = useElements();
 const {user}= useAuth()
@@ -14,7 +14,7 @@ const [clientSecret, setClientSecret] = useState("");
 const [processing, setProcessing] = useState(false);
 const [transactionId, setTransactionId] = useState("")
 const [cardError, setCardError] = useState("");
-    const {price}= paymentCourse
+    console.log(paymentCourse)
     useEffect(() => {
         if (price > 0) {
           axios
@@ -74,6 +74,8 @@ const [cardError, setCardError] = useState("");
             item: paymentCourse?._id,
             courseName: paymentCourse?.courseName,
             courseId: paymentCourse?.courseId,
+            courseImage:paymentCourse?.courseImage,
+            instructorName:paymentCourse?.instructorName,
             date: new Date(),
           };
           axios.post("http://localhost:5000/payments",payment)
@@ -104,7 +106,7 @@ const [cardError, setCardError] = useState("");
           }}
         />
         <button
-          className="btn btn-primary btn-sm mt-4"
+          className="btn .button btn-primary btn-sm mt-4"
           type="submit"
           disabled={!stripe || !clientSecret || processing}
         >

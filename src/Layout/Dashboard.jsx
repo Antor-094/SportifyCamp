@@ -1,11 +1,14 @@
 // import useAuth from "../Hooks/useAuth";
 // import Navbar from "../Pages/Shared/Navbar";
 
+import { FaCashRegister } from "react-icons/fa";
 import { Link, NavLink, Outlet } from "react-router-dom";
 // import SelectedClass from "../Pages/Dashboard/User/SelectedClass";
 
 const Dashboard = () => {
   // const {user}= useAuth()
+  const isAdmin = true
+  const isInstructor=false
   return (
     <>
       {/* <div className="mx-auto container">
@@ -36,8 +39,13 @@ const Dashboard = () => {
             {/* Sidebar content here */}
             <h2 className="text-center">DashBoard</h2>
             <div className="divider"></div>
-            <li>
+            {
+              isAdmin ? <>
+              
+              
+              <li>
               <NavLink
+              end
                 className={({ isActive }) =>
                   isActive ? "text-primary font-bold" : ""
                 }
@@ -48,8 +56,99 @@ const Dashboard = () => {
             </li>
           
             <li>
-              <a>Sidebar Item 2</a>
+              <NavLink
+              className={({ isActive }) =>
+              isActive ? "text-primary font-bold" : ""
+            }
+            to="/dashboard/enrollclasses"
+              ><FaCashRegister></FaCashRegister>Manage Classes</NavLink>
             </li>
+            <li>
+              <NavLink
+              className={({ isActive }) =>
+              isActive ? "text-primary font-bold" : ""
+            }
+            to="/dashboard/paymenthistory"
+              ><FaCashRegister></FaCashRegister>Manage Users</NavLink>
+            </li>
+              
+              
+              
+              </> : isInstructor? 
+              
+              <>
+              
+              
+              
+              <li>
+              <NavLink
+              end
+                className={({ isActive }) =>
+                  isActive ? "text-primary font-bold" : ""
+                }
+                to="/dashboard"
+              >
+                Selected Class
+              </NavLink>
+            </li>
+          
+            <li>
+              <NavLink
+              className={({ isActive }) =>
+              isActive ? "text-primary font-bold" : ""
+            }
+            to="/dashboard/enrollclasses"
+              ><FaCashRegister></FaCashRegister>Add a Class</NavLink>
+            </li>
+            <li>
+              <NavLink
+              className={({ isActive }) =>
+              isActive ? "text-primary font-bold" : ""
+            }
+            to="/dashboard/paymenthistory"
+              ><FaCashRegister></FaCashRegister>My Classes</NavLink>
+            </li>
+              
+              
+              
+              </> :
+              
+              
+              
+              
+              <>
+              
+              <li>
+              <NavLink
+              end
+                className={({ isActive }) =>
+                  isActive ? "text-primary font-bold" : ""
+                }
+                to="/dashboard"
+              >
+                Selected Class
+              </NavLink>
+            </li>
+          
+            <li>
+              <NavLink
+              className={({ isActive }) =>
+              isActive ? "text-primary font-bold" : ""
+            }
+            to="/dashboard/enrollclasses"
+              ><FaCashRegister></FaCashRegister>Enroll classes</NavLink>
+            </li>
+            <li>
+              <NavLink
+              className={({ isActive }) =>
+              isActive ? "text-primary font-bold" : ""
+            }
+            to="/dashboard/paymenthistory"
+              ><FaCashRegister></FaCashRegister>Payment history</NavLink>
+            </li>
+              
+              </>
+            }
             <div className="divider"></div>
             <li>
                 

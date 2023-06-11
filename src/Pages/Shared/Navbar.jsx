@@ -1,5 +1,6 @@
 import { Link, NavLink, useLocation } from "react-router-dom";
 import useAuth from "../../Hooks/useAuth";
+import { useEffect, useRef, useState } from "react";
 
 const Navbar = ({ loggedIn, userProfilePicture }) => {
   const { logOut } = useAuth();
@@ -13,9 +14,7 @@ const Navbar = ({ loggedIn, userProfilePicture }) => {
     <>
       <li>
         <NavLink
-          className={({ isActive }) =>
-            isActive ? "text-primary font-bold" : ""
-          }
+          className={({ isActive }) => (isActive ? "text-primary font-bold" : "")}
           to="/"
         >
           Home
@@ -41,9 +40,7 @@ const Navbar = ({ loggedIn, userProfilePicture }) => {
         <li>
           <NavLink
             to="/dashboard"
-            className={({ isActive }) =>
-            isActive ? "text-primary font-bold" : ""
-          }
+            className={({ isActive }) => (isActive ? "text-primary font-bold" : "")}
           >
             Dashboard
           </NavLink>
@@ -52,8 +49,33 @@ const Navbar = ({ loggedIn, userProfilePicture }) => {
     </>
   );
 
+  const [isNavbarVisible, setIsNavbarVisible] = useState(true);
+  const prevScrollPos = useRef(window.pageYOffset);
+
+  const handleScroll = () => {
+    const currentScrollPos = window.pageYOffset;
+    const isScrolledUp = prevScrollPos.current > currentScrollPos;
+
+    setIsNavbarVisible(isScrolledUp || currentScrollPos === 0);
+    prevScrollPos.current = currentScrollPos;
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
-    <nav className="navbar bg-white md:fixed sticky z-10 bg-opacity-[0.7] container rounded-md">
+    <nav
+      style={{
+        transition: "transform 0.3s ease-in-out",
+        transform: isNavbarVisible ? "translateY(0)" : "translateY(-100%)",
+      }}
+      className="navbar bg-white md:fixed sticky z-10 bg-opacity-[0.7] container rounded-md"
+    >
       <div className="navbar-start">
         <div className="dropdown">
           <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -94,20 +116,17 @@ const Navbar = ({ loggedIn, userProfilePicture }) => {
       <div className="navbar-end">
         {loggedIn || location.pathname === "/dashboard" ? (
           <>
-          <div className="avatar mr-3 tooltip tooltip-left" data-tip={loggedIn.displayName}>
+            <div className="avatar mr-3 tooltip tooltip-left" data-tip={loggedIn.displayName}>
               <div className="w-9 rounded-full">
                 <img src={userProfilePicture} alt="User Profile" />
               </div>
             </div>
-            {/* className="flex tooltip sm:tooltip-left tooltip-top items-center"
-                data-tip={user.displayName} */}
             <button
               onClick={handleLogOut}
               className="btn btn-primary normal-case btn-sm hover:bg-primary transition-colors duration-300"
             >
               Logout
             </button>
-            
           </>
         ) : (
           <Link

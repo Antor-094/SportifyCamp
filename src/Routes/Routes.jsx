@@ -12,10 +12,10 @@ import Dashboard from "../Layout/Dashboard";
 import SelectedClass from "../Pages/Dashboard/User/SelectedClass";
 import Payment from "../Pages/Dashboard/User/Payment";
 import PaymentPage from "../Pages/Dashboard/User/PaymentPage/PaymentPage";
-// import Dashboard from "../Layout/Dashboard";
-// import MyClasses from "../Pages/Dashboard/User/MyClasses";
-// import MyPayment from "../Pages/Dashboard/User/MyPayment";
-// import Dashboard from "../Pages/Dashboard/Dashboard";
+
+import MyEnrollClasses from "../Pages/Dashboard/User/MyEnrollClasses";
+import PaymentHistory from "../Pages/Dashboard/User/PaymentPage/PaymentHistory";
+
 
   const router = createBrowserRouter([
     {
@@ -52,7 +52,15 @@ import PaymentPage from "../Pages/Dashboard/User/PaymentPage/PaymentPage";
       {
         path:'/dashboard/paymentpage',
         element:<PaymentPage></PaymentPage>
-      }
+      },
+      {
+        path:'/dashboard/enrollclasses',
+        element:<MyEnrollClasses></MyEnrollClasses>
+      },
+      {
+        path:'/dashboard/paymenthistory',
+        element:<PaymentHistory></PaymentHistory>
+      },
      ]
       
     }
