@@ -3,14 +3,17 @@ import useAuth from "../../Hooks/useAuth";
 import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
 import Swal from "sweetalert2";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
 
 const ClassesCard = ({ course }) => {
   const { user } = useAuth();
+  const [axiosSecure] = useAxiosSecure(); // Use the custom axios instance
+
   const { data: selectedCourses = [], refetch } = useQuery({
     queryKey: ["selectedCourses"],
     queryFn: async () => {
-      const res = await fetch(`http://localhost:5000/selectedcourse?email=${user?.email}`);
-      return res.json();
+      const res = await axiosSecure.get(`/selectedcourse?email=${user?.email}`);
+      return res.data;
     },
     enabled: !!user, // Fetch only when user is available
   });
@@ -18,10 +21,8 @@ const ClassesCard = ({ course }) => {
   const { data: enrolledCourse = [] } = useQuery({
     queryKey: ["enrolledCourse"],
     queryFn: async () => {
-      const res = await fetch(
-        `http://localhost:5000/payments?email=${user?.email}`
-      );
-      return res.json();
+      const res = await axiosSecure.get(`/payments?email=${user?.email}`);
+      return res.data;
     },
     enabled: !!user,
   });

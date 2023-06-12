@@ -10,26 +10,26 @@ const ManageUsers = () => {
     const res = await fetch("http://localhost:5000/users");
     return res.json();
   });
-//   const handleDelete = (() = {});
-const handleMakeAdmin = user =>{
+  //   const handleDelete = (() = {});
+  const handleMakeAdmin = (user) => {
     fetch(`http://localhost:5000/users/admin/${user._id}`, {
-        method: 'PATCH'
+      method: "PATCH",
     })
-    .then(res => res.json())
-    .then(data => {
-        console.log(data)
-        if(data.modifiedCount){
-            refetch();
-            Swal.fire({
-                position: 'top-end',
-                icon: 'success',
-                title: `${user.name} is an Admin Now!`,
-                showConfirmButton: false,
-                timer: 1500
-              })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data.modifiedCount) {
+          refetch();
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: `${user.name} is an Admin Now!`,
+            showConfirmButton: false,
+            timer: 1500,
+          });
         }
-    })
-}
+      });
+  };
   return (
     <div>
       <Helmet>
@@ -65,16 +65,18 @@ const handleMakeAdmin = user =>{
                 </th>
                 <td>{user.name}</td>
                 <td>{user.email}</td>
+                <td>{user.role}</td>
                 <td>
-                    {user.role}
-                </td>
-                <td>
-                <button
-                      onClick={() => handleMakeAdmin(user)}
-                      className={user.role==='admin'?"btn btn-ghost btn-disabled":"btn btn-ghost bg-orange-600  text-white"}
-                    >
-                      MkAdmin
-                    </button>
+                  <button
+                    onClick={() => handleMakeAdmin(user)}
+                    className={
+                      user.role === "admin"
+                        ? "btn btn-ghost btn-disabled"
+                        : "btn btn-ghost bg-orange-600  text-white"
+                    }
+                  >
+                    MkAdmin
+                  </button>
                 </td>
                 <td>
                   <button
@@ -84,7 +86,6 @@ const handleMakeAdmin = user =>{
                     MkIns
                   </button>
                 </td>
-                
               </tr>
             ))}
           </tbody>

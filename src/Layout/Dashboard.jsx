@@ -3,11 +3,13 @@
 
 import { FaCashRegister } from "react-icons/fa";
 import { Link, NavLink, Outlet } from "react-router-dom";
+import useAdmin from "../Hooks/useAdmin";
 // import SelectedClass from "../Pages/Dashboard/User/SelectedClass";
 
 const Dashboard = () => {
   // const {user}= useAuth()
-  const isAdmin = true
+  // const isAdmin = true
+  const [isAdmin] = useAdmin()
   const isInstructor=false
   return (
     <>

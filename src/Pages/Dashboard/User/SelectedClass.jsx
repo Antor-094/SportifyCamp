@@ -3,33 +3,26 @@ import useAuth from "../../../Hooks/useAuth";
 import axios from "axios";
 import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
+import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 
 const SelectedClass = () => {
   const { user } = useAuth();
+
+  // const token = localStorage.getItem('access-token')
+  const [axiosSecure]=useAxiosSecure()
   const { data: selectedCourses = [], refetch } = useQuery({
     queryKey: ["selectedCourses"],
     queryFn: async () => {
-      const res = await fetch(
-        `http://localhost:5000/selectedcourse?email=${user?.email}`
-      );
-      return res.json();
+      const res = await axiosSecure(
+        `/selectedcourse?email=${user?.email}`
+      )
+      console.log('res from axios',res)
+      return res.data;
     },
     enabled: !!user, // Fetch only when user is available
   });
   console.log(selectedCourses);
-  // const { data: courses = [] } = useQuery({
-  //   queryKey: ["courses"],
-  //   queryFn: async () => {
-  //     const res = await fetch(`http://localhost:5000/courses`);
-  //     return res.json();
-  //   },
-  //   enabled: !!user, // Fetch only when user is available
-  // });
-
-  // const handlePay = (course) => {
-  //   // Handle payment logic here
-  //   console.log("Payment for course:", course);
-  // };
+ 
 
   const handleDelete = async (course) => {
     try {
