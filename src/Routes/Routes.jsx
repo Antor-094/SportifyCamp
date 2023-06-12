@@ -16,6 +16,9 @@ import PaymentPage from "../Pages/Dashboard/User/PaymentPage/PaymentPage";
 import MyEnrollClasses from "../Pages/Dashboard/User/MyEnrollClasses";
 import PaymentHistory from "../Pages/Dashboard/User/PaymentPage/PaymentHistory";
 
+import ManageClasses from "../Pages/Dashboard/Admin/ManageClasses";
+import ManageUsers from "../Pages/Dashboard/Admin/ManageUsers";
+
 
   const router = createBrowserRouter([
     {
@@ -42,7 +45,7 @@ import PaymentHistory from "../Pages/Dashboard/User/PaymentPage/PaymentHistory";
       element:<PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
      children:[
       {
-        path:'/dashboard',
+        path:'/dashboard/selectedclasses',
         element:<SelectedClass></SelectedClass>
       },
       {
@@ -60,6 +63,15 @@ import PaymentHistory from "../Pages/Dashboard/User/PaymentPage/PaymentHistory";
       {
         path:'/dashboard/paymenthistory',
         element:<PaymentHistory></PaymentHistory>
+      },
+      //---admin
+      {
+        path:'/dashboard/manageusers',
+        element:<ManageUsers></ManageUsers>
+      },
+      {
+        path:'/dashboard/manageclasses',
+        element:<ManageClasses></ManageClasses>
       },
      ]
       

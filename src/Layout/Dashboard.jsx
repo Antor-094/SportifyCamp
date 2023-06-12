@@ -49,9 +49,9 @@ const Dashboard = () => {
                 className={({ isActive }) =>
                   isActive ? "text-primary font-bold" : ""
                 }
-                to="/dashboard"
+                to="/dashboard/manageusers"
               >
-                Selected Class
+                Manage Users
               </NavLink>
             </li>
           
@@ -60,18 +60,10 @@ const Dashboard = () => {
               className={({ isActive }) =>
               isActive ? "text-primary font-bold" : ""
             }
-            to="/dashboard/enrollclasses"
-              ><FaCashRegister></FaCashRegister>Manage Classes</NavLink>
+            to="/dashboard/manageclasses"
+              >Manage Classes</NavLink>
             </li>
-            <li>
-              <NavLink
-              className={({ isActive }) =>
-              isActive ? "text-primary font-bold" : ""
-            }
-            to="/dashboard/paymenthistory"
-              ><FaCashRegister></FaCashRegister>Manage Users</NavLink>
-            </li>
-              
+            
               
               
               </> : isInstructor? 
@@ -86,9 +78,9 @@ const Dashboard = () => {
                 className={({ isActive }) =>
                   isActive ? "text-primary font-bold" : ""
                 }
-                to="/dashboard"
+                to="/dashboard/myclasses"
               >
-                Selected Class
+                My Classes
               </NavLink>
             </li>
           
@@ -97,17 +89,10 @@ const Dashboard = () => {
               className={({ isActive }) =>
               isActive ? "text-primary font-bold" : ""
             }
-            to="/dashboard/enrollclasses"
+            to="/dashboard/addclass"
               ><FaCashRegister></FaCashRegister>Add a Class</NavLink>
             </li>
-            <li>
-              <NavLink
-              className={({ isActive }) =>
-              isActive ? "text-primary font-bold" : ""
-            }
-            to="/dashboard/paymenthistory"
-              ><FaCashRegister></FaCashRegister>My Classes</NavLink>
-            </li>
+            
               
               
               
@@ -124,7 +109,7 @@ const Dashboard = () => {
                 className={({ isActive }) =>
                   isActive ? "text-primary font-bold" : ""
                 }
-                to="/dashboard"
+                to="/dashboard/selectedclasses"
               >
                 Selected Class
               </NavLink>
