@@ -1,5 +1,5 @@
 const InstructorsCard = ({ instructor }) => {
-  console.log(instructor);
+  // console.log(instructor);
   return (
     // <div className="card w-[100%] bg-base-100 shadow-xl hover:shadow-2xl transform hover:-translate-y-1 hover:scale-105 transition duration-500">
     <div className="card card-compact bg-base-100 shadow-xl hover:shadow-2xl transform hover:-translate-y-1 hover:scale-105 transition duration-500">

@@ -6,21 +6,23 @@ import './CheckoutForm.css'
 import { useEffect, useState } from "react";
 import axios from "axios";
 import useAuth from "../../../../Hooks/useAuth";
+// import useAxiosSecure from "../../../../Hooks/useAxiosSecure";
 const CheckoutForm = ({paymentCourse,price}) => {
     const stripe = useStripe();
+    // const[axiosSecure]=useAxiosSecure()
 const elements = useElements();
 const {user}= useAuth()
 const [clientSecret, setClientSecret] = useState("");
 const [processing, setProcessing] = useState(false);
 const [transactionId, setTransactionId] = useState("")
 const [cardError, setCardError] = useState("");
-    console.log(paymentCourse)
+    // console.log(paymentCourse)
     useEffect(() => {
         if (price > 0) {
           axios
             .post("http://localhost:5000/create-payment-intent", { price })
             .then((res) => {
-              console.log(res.data.clientSecret);
+              // console.log(res.data.clientSecret);
               setClientSecret(res.data.clientSecret);
             });
         }
@@ -61,7 +63,7 @@ const [cardError, setCardError] = useState("");
         if (confirmError) {
           console.log(confirmError);
         }
-        console.log(paymentIntent);
+        // console.log(paymentIntent);
     
         setProcessing(false);
     

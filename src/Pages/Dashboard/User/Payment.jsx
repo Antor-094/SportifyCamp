@@ -18,7 +18,7 @@ const Payment = () => {
       return res.json();
     },
   });
-
+console.log(selectedCourses)
   const paymentCourse = selectedCourses.find((item) => item.courseId === id);
   const price = paymentCourse ? paymentCourse.price : 0;
 

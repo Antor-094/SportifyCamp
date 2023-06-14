@@ -4,10 +4,14 @@ import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
+import useAdmin from "../../Hooks/useAdmin";
+import useInstructor from "../../Hooks/useInstructor";
 
-const ClassesCard = ({ course }) => {
+const ClassesCard = ({ course}) => {
   const { user } = useAuth();
   const [axiosSecure] = useAxiosSecure(); // Use the custom axios instance
+  const [isAdmin]= useAdmin()
+  const [isInstructor] = useInstructor()
 
   const { data: selectedCourses = [], refetch } = useQuery({
     queryKey: ["selectedCourses"],
@@ -26,7 +30,7 @@ const ClassesCard = ({ course }) => {
     },
     enabled: !!user,
   });
-  console.log(enrolledCourse);
+  // console.log(enrolledCourse);
 
   const handleSelect = (course) => {
     if (!user) {
@@ -106,9 +110,7 @@ const ClassesCard = ({ course }) => {
           <p className="text-sm text-[#65799b] font-semibold">
             Available Seats: {course?.availableSeats}
           </p>
-          <p className="text-sm text-[#65799b] font-semibold">
-            Enrolled Seats: {course?.enrolledStudents}
-          </p>
+         
           <p className="text-sm text-[#65799b] font-semibold">
             Price: {course?.price}
           </p>
@@ -119,7 +121,7 @@ const ClassesCard = ({ course }) => {
               Enroll Now
               <FaArrowRight />
             </button>
-          ) : isCourseSelected || isCourseEnrolled ? (
+          ) : isCourseSelected || isCourseEnrolled || isAdmin || isInstructor? (
             <button className="btn btn-disabled bg-gray-400 text-black mt-4" disabled>
               {isCourseEnrolled?'Enrolled':'Selected'}
               <FaArrowRight />

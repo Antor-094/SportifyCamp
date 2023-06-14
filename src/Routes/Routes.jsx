@@ -11,13 +11,18 @@ import PrivateRoute from "./PrivateRoute";
 import Dashboard from "../Layout/Dashboard";
 import SelectedClass from "../Pages/Dashboard/User/SelectedClass";
 import Payment from "../Pages/Dashboard/User/Payment";
-import PaymentPage from "../Pages/Dashboard/User/PaymentPage/PaymentPage";
+// import PaymentPage from "../Pages/Dashboard/User/PaymentPage/PaymentPage";
 
 import MyEnrollClasses from "../Pages/Dashboard/User/MyEnrollClasses";
 import PaymentHistory from "../Pages/Dashboard/User/PaymentPage/PaymentHistory";
 
 import ManageClasses from "../Pages/Dashboard/Admin/ManageClasses";
 import ManageUsers from "../Pages/Dashboard/Admin/ManageUsers";
+import MyClasses from "../Pages/Dashboard/Instructor/MyClasses";
+import AddClass from "../Pages/Dashboard/Instructor/AddClass";
+import AdminRoute from "./AdminRoute";
+import InstructorRoute from "./InstructorRoute";
+import Classes from "../Pages/Classes/Classes";
 
 
   const router = createBrowserRouter([
@@ -37,6 +42,10 @@ import ManageUsers from "../Pages/Dashboard/Admin/ManageUsers";
         {
             path:'/signup',
             element:<SignUp></SignUp>
+        },
+        {
+            path:'/classes',
+            element:<Classes></Classes>
         }
       ]
     },
@@ -52,10 +61,7 @@ import ManageUsers from "../Pages/Dashboard/Admin/ManageUsers";
         path:'/dashboard/payments/:id',
         element:<Payment></Payment>
       },
-      {
-        path:'/dashboard/paymentpage',
-        element:<PaymentPage></PaymentPage>
-      },
+     
       {
         path:'/dashboard/enrollclasses',
         element:<MyEnrollClasses></MyEnrollClasses>
@@ -67,11 +73,28 @@ import ManageUsers from "../Pages/Dashboard/Admin/ManageUsers";
       //---admin
       {
         path:'/dashboard/manageusers',
-        element:<ManageUsers></ManageUsers>
+        element:<AdminRoute>
+          <ManageUsers></ManageUsers>
+        </AdminRoute>
       },
       {
         path:'/dashboard/manageclasses',
-        element:<ManageClasses></ManageClasses>
+        element:<AdminRoute>
+          <ManageClasses></ManageClasses>
+        </AdminRoute>
+      },
+      //instructor route
+      {
+        path:'/dashboard/myclasses',
+        element:<InstructorRoute>
+          <MyClasses></MyClasses>
+        </InstructorRoute>
+      },
+      {
+        path:'/dashboard/addclass',
+        element:<InstructorRoute>
+          <AddClass></AddClass>
+        </InstructorRoute>
       },
      ]
       

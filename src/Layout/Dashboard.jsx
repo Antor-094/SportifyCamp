@@ -1,16 +1,20 @@
 // import useAuth from "../Hooks/useAuth";
 // import Navbar from "../Pages/Shared/Navbar";
 
-import { FaCashRegister } from "react-icons/fa";
+import { FaCalculator, FaCashRegister } from "react-icons/fa";
 import { Link, NavLink, Outlet } from "react-router-dom";
 import useAdmin from "../Hooks/useAdmin";
+import useInstructor from "../Hooks/useInstructor";
+// import useAuth from "../Hooks/useAuth";
 // import SelectedClass from "../Pages/Dashboard/User/SelectedClass";
 
 const Dashboard = () => {
   // const {user}= useAuth()
   // const isAdmin = true
   const [isAdmin] = useAdmin()
-  const isInstructor=false
+  const [isInstructor]=useInstructor()
+  // const {setLoading}=useAuth()
+  // const isInstructor=false
   return (
     <>
       {/* <div className="mx-auto container">
@@ -24,7 +28,7 @@ const Dashboard = () => {
 
       <div className="drawer lg:drawer-open">
         <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
-        <div className="drawer-content flex flex-col items-center justify-center">
+        <div className="drawer-content flex flex-col items-center bg-[#111827]">
           {/* Page content here */}
           {/* <SelectedClass></SelectedClass> */}
           <label
@@ -82,7 +86,7 @@ const Dashboard = () => {
                 }
                 to="/dashboard/myclasses"
               >
-                My Classes
+               <FaCalculator></FaCalculator> My Classes
               </NavLink>
             </li>
           
@@ -106,6 +110,7 @@ const Dashboard = () => {
               <>
               
               <li>
+                
               <NavLink
               end
                 className={({ isActive }) =>

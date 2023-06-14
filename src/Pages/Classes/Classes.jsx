@@ -1,11 +1,13 @@
 /* eslint-disable react/no-unescaped-entities */
+
+
 import { useQuery } from "@tanstack/react-query";
-import SectionTitle from "../../../Components/SectionTitle/SectionTitle";
 
-import ClassesCard from "../../../Components/card/ClassesCard";
-import "./PopularClasses.css";
 
-const PopularClasses = () => {
+import SectionTitle from "../../Components/SectionTitle/SectionTitle";
+import ClassesCard from "../../Components/card/ClassesCard";
+
+const Classes = () => {
   const {data:courses=[]}=useQuery({
     queryKey:['courses'],
     queryFn: async()=>{
@@ -19,15 +21,18 @@ const PopularClasses = () => {
       <SectionTitle
         heading="Popular Classes"
         subHeading="Popular classes based on the number of students"
+        margin={true}
       ></SectionTitle>
 
       <div className="grid md:grid-cols-3 w-[80%] mx-auto gap-8">
       {
-        filteredCourses.map(course=><ClassesCard key={course._id} course={course}></ClassesCard>)
+        filteredCourses.map(course=><ClassesCard key={course._id} course={course}
+            
+        ></ClassesCard>)
       }
       </div>
     </div>
   );
 };
 
-export default PopularClasses;
+export default Classes;
