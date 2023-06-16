@@ -10,7 +10,7 @@ const { user } = useAuth();
   const { data: enrollClasses = [] } = useQuery({
     queryKey: ["enrollClasses"],
     queryFn: async () => {
-      const res = await fetch(`http://localhost:5000/payments?email=${user?.email}`);
+      const res = await fetch(`https://summer-camp-learning-school-server-olive.vercel.app/payments?email=${user?.email}`);
       return res.json();
     },
    

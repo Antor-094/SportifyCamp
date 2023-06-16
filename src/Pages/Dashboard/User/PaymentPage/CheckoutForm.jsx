@@ -20,7 +20,7 @@ const [cardError, setCardError] = useState("");
     useEffect(() => {
         if (price > 0) {
           axios
-            .post("http://localhost:5000/create-payment-intent", { price })
+            .post("https://summer-camp-learning-school-server-olive.vercel.app/create-payment-intent", { price })
             .then((res) => {
               // console.log(res.data.clientSecret);
               setClientSecret(res.data.clientSecret);
@@ -81,7 +81,7 @@ const [cardError, setCardError] = useState("");
             enrollStudents:paymentCourse?.enrollStudents,
             date: new Date(),
           };
-          axios.post("http://localhost:5000/payments",payment)
+          axios.post("https://summer-camp-learning-school-server-olive.vercel.app/payments",payment)
           .then(res=>{
             if (res.data.insertedId) {
               alert('Payment Successful')

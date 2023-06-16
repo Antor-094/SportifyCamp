@@ -14,7 +14,7 @@ const PopularInstructors = () => {
     const {data:users=[]}=useQuery({
       queryKey:['users'],
       queryFn: async()=>{
-        const res = await fetch('http://localhost:5000/users');
+        const res = await fetch('https://summer-camp-learning-school-server-olive.vercel.app/users');
         return res.json()
       }
     })
@@ -29,7 +29,7 @@ const PopularInstructors = () => {
       ></SectionTitle>
 
       <div className="grid md:grid-cols-3 w-[85%] md:w-[70%] mx-auto gap-6">
-        {/* <InstructorsCard image={'https://i.ibb.co/8Y3r4mZ/kids-playing-basketball.jpg'} email={'antor@nadia.com'} name={'Basketball'}></InstructorsCard> */}
+        
 
         {
           filteredUsers.slice(0,6).map(instructor=><InstructorsCard

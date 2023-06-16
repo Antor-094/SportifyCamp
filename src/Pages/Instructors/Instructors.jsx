@@ -8,7 +8,7 @@ const Instructors = () => {
     const {data:users=[]}=useQuery({
         queryKey:['users'],
         queryFn: async()=>{
-          const res = await fetch('http://localhost:5000/users');
+          const res = await fetch('https://summer-camp-learning-school-server-olive.vercel.app/users');
           return res.json()
         }
       })
@@ -18,8 +18,8 @@ const Instructors = () => {
     return (
       <div>
         <SectionTitle
-          heading="Popular Instructors"
-          subHeading="Popular classes based on the number of students enroll"
+          heading="Instructors"
+          // subHeading="Popular classes based on the number of students enroll"
         ></SectionTitle>
   
         <div className="grid md:grid-cols-3 w-[80%] mx-auto gap-4">

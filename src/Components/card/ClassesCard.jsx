@@ -20,7 +20,7 @@ const ClassesCard = ({ course}) => {
       const res = await axiosSecure.get(`/selectedcourse?email=${user?.email}`);
       return res.data;
     },
-    enabled: !!user, // Fetch only when user is available
+    enabled: !!user, 
   });
 
   const { data: enrolledCourse = [] } = useQuery({
@@ -35,7 +35,12 @@ const ClassesCard = ({ course}) => {
 
   const handleSelect = (course) => {
     if (!user) {
-      return alert("You have to log in!!");
+      Swal.fire({
+        icon: "error",
+        title: "Login Required",
+        text: "You have to log in!!",
+      });
+      return;
     }
 
     const isCourseSelected = selectedCourses.some((selectedCourse) => {
@@ -52,7 +57,7 @@ const ClassesCard = ({ course}) => {
     course.email = user.email;
 
     axios
-      .post(`http://localhost:5000/selectedcourse`, course)
+      .post(`https://summer-camp-learning-school-server-olive.vercel.app/selectedcourse`, course)
       .then((res) => {
         console.log(res.data);
         Swal.fire({
@@ -60,7 +65,7 @@ const ClassesCard = ({ course}) => {
           title: "Course Selected",
           text: "You have successfully enrolled in the course.",
         }).then(() => {
-          refetch(); // Trigger refetch after successful course selection
+          refetch();
         });
       })
       .catch((err) => {
@@ -98,6 +103,7 @@ const ClassesCard = ({ course}) => {
     
     <img src={course?.courseImage} alt="Card" className="w-full h-64 md:h-72 object-cover" />
     <div className="p-4">
+    <p className="text-xl text-[#65799b] font-semibold">{course?.courseName}</p>
     <p className="text-sm text-[#65799b] font-semibold">Instructor Name: {course?.instructorName}</p>
     <p className="text-sm text-[#65799b] font-semibold">Available Seats: {course?.availableSeats}</p>
     <p className="text-sm text-[#65799b] font-semibold">Enroll Students: {course?.enrollStudents}</p>

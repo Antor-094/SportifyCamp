@@ -10,7 +10,7 @@ const PopularClasses = () => {
   const {data:courses=[]}=useQuery({
     queryKey:['courses'],
     queryFn: async()=>{
-      const res = await fetch('http://localhost:5000/courses');
+      const res = await fetch('https://summer-camp-learning-school-server-olive.vercel.app/courses');
       return res.json()
     }
   })

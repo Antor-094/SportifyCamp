@@ -47,20 +47,22 @@ const Navbar = ({ loggedIn, userProfilePicture }) => {
         </NavLink>
       </li>
       <li>
-        <Link
+        <NavLink
           to="/instructors"
-          className="hover:text-primary transition-colors duration-300"
+          // className="hover:text-primary transition-colors duration-300"
+          className={({ isActive }) => (isActive ? "text-primary font-bold hover:text-primary transition-colors duration-300" : "")}
         >
           Instructors
-        </Link>
+        </NavLink>
       </li>
       <li>
-        <Link
+        <NavLink
           to="/classes"
-          className="hover:text-primary transition-colors duration-300"
+          // className="hover:text-primary transition-colors duration-300"
+          className={({ isActive }) => (isActive ? "text-primary font-bold hover:text-primary transition-colors duration-300" : "")}
         >
           Classes
-        </Link>
+        </NavLink>
       </li>
       {loggedIn && (
         <li>

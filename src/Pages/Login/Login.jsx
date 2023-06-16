@@ -1,34 +1,46 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import "./Login.css";
 import { useForm } from "react-hook-form";
 import useAuth from "../../Hooks/useAuth";
 import SocialLogin from "../Shared/SocialLogin.jsx/SocialLogin";
+import Swal from "sweetalert2";
 
 const Login = () => {
-  // TODO: password validation
   const { signIn } = useAuth();
   const [passwordVisible, setPasswordVisible] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
+
   const onSubmit = (data) => {
-    console.log(data);
     signIn(data.email, data.password)
       .then((result) => {
-        console.log(result.user);
+        Swal.fire({
+          icon: "success",
+          title: "Login Successful",
+          text: `Welcome, ${result.user.displayName}!`,
+        });
+        navigate(from, { replace: true });
       })
-      .then((err) => {
-        console.log(err);
+      .catch((error) => {
+        Swal.fire({
+          icon: "error",
+          title: "Login Failed",
+          text: error.message,
+        });
       });
   };
 
- 
   const togglePasswordVisibility = () => {
     setPasswordVisible(!passwordVisible);
   };
+
   return (
     <div className="py-32 flex justify-center">
       <div className="form-container w-[90%] md:w-[30%]">

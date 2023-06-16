@@ -26,7 +26,7 @@ const SelectedClass = () => {
 
   const handleDelete = async (course) => {
     try {
-      await axios.delete(`http://localhost:5000/selectedcourse/${course._id}`);
+      await axios.delete(`https://summer-camp-learning-school-server-olive.vercel.app/selectedcourse/${course._id}`);
       Swal.fire({
         icon: "success",
         title: "Course Deleted",

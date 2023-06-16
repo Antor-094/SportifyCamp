@@ -23,7 +23,7 @@ const AddClass = () => {
         data.availableSeats=parseFloat(data.availableSeats)
         data.enrollStudents=0
         data.status='pending'
-        axios.post('http://localhost:5000/courses',data).then(res=>console.log(res.data))
+        axios.post('https://summer-camp-learning-school-server-olive.vercel.app/courses',data).then(res=>console.log(res.data))
       }
     })
 

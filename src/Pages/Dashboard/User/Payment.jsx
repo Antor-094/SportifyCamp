@@ -14,7 +14,7 @@ const Payment = () => {
   const { data: selectedCourses = [] } = useQuery({
     queryKey: ["selectedCourses"],
     queryFn: async () => {
-      const res = await fetch(`http://localhost:5000/selectedcourse?email=${user?.email}`);
+      const res = await fetch(`https://summer-camp-learning-school-server-olive.vercel.app/selectedcourse?email=${user?.email}`);
       return res.json();
     },
   });

@@ -13,7 +13,7 @@ const MyClasses = () => {
     const { data: myClasses = []} = useQuery({
         queryKey: ["myClasses"],
         queryFn: async () => {
-          const res = await fetch(`http://localhost:5000/instructorsCourses/${user?.email}`);
+          const res = await fetch(`https://summer-camp-learning-school-server-olive.vercel.app/instructorsCourses/${user?.email}`);
         
           return res.json();
           
