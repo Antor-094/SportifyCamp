@@ -91,10 +91,11 @@ const ManageUsers = () => {
                     className={
                       user.role === "admin"
                         ? "btn btn-ghost btn-disabled"
-                        : "btn btn-ghost bg-orange-600  text-white"
+                        : "btn btn-ghost bg-[#65799b]  text-white"
                     }
                   >
-                    MkAdmin
+                    Make <br />
+                    admin
                   </button>
                 </td>
                 <td>
@@ -103,10 +104,11 @@ const ManageUsers = () => {
                     className={
                       user.role === "instructor"
                         ? "btn btn-ghost btn-disabled"
-                        : "btn btn-ghost bg-orange-600  text-white"
+                        : "btn btn-ghost bg-[#65799b] text-white"
                     }
                   >
-                    MkIns
+                    Make <br />
+                    Instructor
                   </button>
                 </td>
               </tr>

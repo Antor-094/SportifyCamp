@@ -8,7 +8,7 @@ const InstructorsCard = ({ instructor }) => {
       <div className="p-4">
         <h2 className="text-2xl font-bold mb-2 text-[#65799b]">{instructor.name}</h2>
         <h2 className="text-xl font-semibold mb-2 text-[#65799b]">{instructor.email}</h2>
-        <p className=" mb-4 text-[#65799b]">this is a very good insrtuc jj.ehuinjuhibji dshbkjh  jhdbdjhbcijs hcjihbcijd</p>
+        
         
       </div>
     </div>

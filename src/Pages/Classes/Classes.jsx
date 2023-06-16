@@ -6,6 +6,7 @@ import { useQuery } from "@tanstack/react-query";
 
 import SectionTitle from "../../Components/SectionTitle/SectionTitle";
 import ClassesCard from "../../Components/card/ClassesCard";
+import { Helmet } from "react-helmet-async";
 
 const Classes = () => {
   const {data:courses=[]}=useQuery({
@@ -18,6 +19,9 @@ const Classes = () => {
   const filteredCourses = courses.filter(course=>course.status=='approved')
   return (
     <div>
+      <Helmet>
+        <title>SportifyCamp | classes</title>
+      </Helmet>
       <div className="">
       <SectionTitle
         heading="Classes"

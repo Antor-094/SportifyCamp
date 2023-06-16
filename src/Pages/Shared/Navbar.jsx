@@ -1,9 +1,13 @@
 import { useState, useEffect, useRef } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import useAuth from "../../Hooks/useAuth";
+import useAdmin from "../../Hooks/useAdmin";
+import useInstructor from "../../Hooks/useInstructor";
 
 const Navbar = ({ loggedIn, userProfilePicture }) => {
   const { logOut } = useAuth();
+  const [isAdmin] = useAdmin()
+  const [isInstructor]= useInstructor()
   const handleLogOut = () => {
     logOut();
   };
@@ -21,6 +25,17 @@ const Navbar = ({ loggedIn, userProfilePicture }) => {
   const closeDropdown = () => {
     setDropdownOpen(false);
   };
+  const isDashboard=()=>{
+    console.log(isAdmin)
+    console.log(isInstructor)
+    if(isAdmin){
+      return '/dashboard/manageusers'
+    }else if(isInstructor){
+      return '/dashboard/myclasses'
+    }else{
+      return '/dashboard/selectedclasses'
+    }
+  }
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -30,6 +45,7 @@ const Navbar = ({ loggedIn, userProfilePicture }) => {
     };
 
     window.addEventListener("click", handleClickOutside);
+    
 
     return () => {
       window.removeEventListener("click", handleClickOutside);
@@ -67,7 +83,7 @@ const Navbar = ({ loggedIn, userProfilePicture }) => {
       {loggedIn && (
         <li>
           <NavLink
-            to="/dashboard"
+            to={isDashboard()}
             className={({ isActive }) => (isActive ? "text-primary font-bold" : "")}
           >
             Dashboard
@@ -78,7 +94,7 @@ const Navbar = ({ loggedIn, userProfilePicture }) => {
   );
 
   return (
-    <nav className="navbar bg-white sticky z-10 bg-opacity-[0.7] container rounded-md">
+    <nav className="navbar md:px-4 bg-white sticky z-10 bg-opacity-[0.7] container rounded-md">
       <div className="navbar-start">
         <div className="dropdown" ref={dropdownRef}>
           <label tabIndex={0} className="btn btn-ghost lg:hidden" onClick={toggleDropdown}>

@@ -1,7 +1,7 @@
 // import useAuth from "../Hooks/useAuth";
 // import Navbar from "../Pages/Shared/Navbar";
 
-import { FaCalculator, FaCashRegister } from "react-icons/fa";
+import {  FaCalendarAlt, FaCalendarCheck,FaFolderOpen, FaHistory, FaHome, FaPlusCircle, FaPlusSquare, FaUsersCog } from "react-icons/fa";
 import { Link, NavLink, Outlet } from "react-router-dom";
 import useAdmin from "../Hooks/useAdmin";
 import useInstructor from "../Hooks/useInstructor";
@@ -35,7 +35,7 @@ const Dashboard = () => {
             htmlFor="my-drawer-2"
             className="btn btn-primary drawer-button lg:hidden"
           >
-            Open drawer
+            Open
           </label>
           <Outlet></Outlet>
         </div>
@@ -57,7 +57,7 @@ const Dashboard = () => {
                 }
                 to="/dashboard/manageusers"
               >
-                Manage Users
+              <FaUsersCog />  Manage Users
               </NavLink>
             </li>
           
@@ -67,7 +67,8 @@ const Dashboard = () => {
               isActive ? "text-primary font-bold" : ""
             }
             to="/dashboard/manageclasses"
-              >Manage Classes</NavLink>
+              >
+               <FaFolderOpen /> Manage Classes</NavLink>
             </li>
             
               
@@ -86,7 +87,7 @@ const Dashboard = () => {
                 }
                 to="/dashboard/myclasses"
               >
-               <FaCalculator></FaCalculator> My Classes
+               <FaCalendarAlt/> My Classes
               </NavLink>
             </li>
           
@@ -96,7 +97,7 @@ const Dashboard = () => {
               isActive ? "text-primary font-bold" : ""
             }
             to="/dashboard/addclass"
-              ><FaCashRegister></FaCashRegister>Add a Class</NavLink>
+              ><FaPlusSquare /> Add a Class</NavLink>
             </li>
             
               
@@ -118,7 +119,7 @@ const Dashboard = () => {
                 }
                 to="/dashboard/selectedclasses"
               >
-                Selected Class
+               <FaCalendarCheck /> Selected Classes
               </NavLink>
             </li>
           
@@ -128,7 +129,7 @@ const Dashboard = () => {
               isActive ? "text-primary font-bold" : ""
             }
             to="/dashboard/enrollclasses"
-              ><FaCashRegister></FaCashRegister>Enroll classes</NavLink>
+              ><FaPlusCircle/>Enroll classes</NavLink>
             </li>
             <li>
               <NavLink
@@ -136,7 +137,7 @@ const Dashboard = () => {
               isActive ? "text-primary font-bold" : ""
             }
             to="/dashboard/paymenthistory"
-              ><FaCashRegister></FaCashRegister>Payment history</NavLink>
+              ><FaHistory />  Payment history</NavLink>
             </li>
               
               </>
@@ -144,7 +145,7 @@ const Dashboard = () => {
             <div className="divider"></div>
             <li>
                 
-              <Link to={"/"}>Home</Link>
+             <Link to={"/"}><FaHome /> Home</Link>
             </li>
           </ul>
         </div>

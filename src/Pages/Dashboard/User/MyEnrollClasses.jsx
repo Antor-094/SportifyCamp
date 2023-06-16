@@ -1,5 +1,6 @@
 // import { useQuery } from "react-query";
 // import axios from "axios";
+import { Helmet } from "react-helmet-async";
 import SectionTitle from "../../../Components/SectionTitle/SectionTitle";
 import useAuth from "../../../Hooks/useAuth";
 import { useQuery } from "@tanstack/react-query";
@@ -19,24 +20,27 @@ const { user } = useAuth();
 console.log(enrollClasses)
   return (
     <div>
+      <Helmet>
+        <title>SportifyCamp | EnrollClasses</title>
+      </Helmet>
       <SectionTitle heading={'Enroll Classes'}></SectionTitle>
       <div className="overflow-x-auto">
       <table className="table min-w-full divide-y divide-gray-200">
         <thead>
           <tr>
-            <th className="px-6 py-3 text-[16px] text-black font-semibold">
+            <th className="px-6 py-3 text-[16px] text-white font-semibold">
               SNo
             </th>
-            <th className="px-6 py-3 text-[16px] text-black font-semibold">
+            <th className="px-6 py-3 text-[16px] text-white font-semibold">
               Course Image
             </th>
-            <th className="px-6 py-3 text-[16px] text-black font-semibold">
+            <th className="px-6 py-3 text-[16px] text-white font-semibold">
               Course Name
             </th>
-            <th className="px-6 py-3 text-[16px] text-black font-semibold">
+            <th className="px-6 py-3 text-[16px] text-white font-semibold">
               Instructor Name
             </th>
-            <th className="px-6 py-3 text-[16px] text-black font-semibold">
+            <th className="px-6 py-3 text-[16px] text-white font-semibold">
               Price
             </th>
             
@@ -47,7 +51,7 @@ console.log(enrollClasses)
             // const course = courses.find((c) => c._id === selectedCourse.courseId);
             return (
               <tr key={enrollClasse._id}>
-                <td className="px-6 py-4 text-black text-[13px]">
+                <td className="px-6 py-4 text-white text-[13px]">
                   {index + 1}
                 </td>{" "}
                 {/* Serial number column */}
@@ -58,13 +62,13 @@ console.log(enrollClasses)
                     className="h-16 w-16 object-cover"
                   />
                 </td>
-                <td className="px-6 py-4 text-black text-[13px]">
+                <td className="px-6 py-4 text-white text-[13px]">
                   {enrollClasse?.courseName}
                 </td>
-                <td className="px-6 py-4 text-black text-[13px]">
+                <td className="px-6 py-4 text-white text-[13px]">
                   {enrollClasse?.instructorName}
                 </td>
-                <td className="px-6 py-4 text-black text-[13px] text-end">
+                <td className="px-6 py-4 text-white text-[13px] text-end">
                   ${enrollClasse?.price}
                 </td>
                 

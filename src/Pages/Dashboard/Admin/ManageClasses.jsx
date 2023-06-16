@@ -3,12 +3,14 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { useRef, useState } from "react";
+import { Helmet } from "react-helmet-async";
+import Swal from "sweetalert2";
 // import { Link } from "react-router-dom";
 
 const ManageClasses = () => {
   const feedbackRef = useRef();
   const [selectedCourseId, setSelectedCourseId] = useState(null);
-  const { data: courses = [] } = useQuery({
+  const { data: courses = [],refetch } = useQuery({
     queryKey: ["courses"],
     queryFn: async () => {
       const res = await fetch("https://summer-camp-learning-school-server-olive.vercel.app/courses");
@@ -21,7 +23,13 @@ const ManageClasses = () => {
       .patch(`https://summer-camp-learning-school-server-olive.vercel.app/courses/${id}?status=approved`)
       .then((res) => {
         if (res.data.modifiedCount) {
-          alert("approved the course");
+          Swal.fire({
+            position:'top-end',
+            icon:'success',
+            title:'Course Approved successfully',
+            
+          })
+          refetch();
         }
       });
   };
@@ -30,7 +38,12 @@ const ManageClasses = () => {
       .patch(`https://summer-camp-learning-school-server-olive.vercel.app/courses/${id}?status=deny`)
       .then((res) => {
         if (res.data.modifiedCount) {
-          alert("Deny the course");
+          Swal.fire({
+            position:'top-end',
+            title:'Course denied successfully',
+            
+          })
+          refetch();
         }
       });
   };
@@ -39,13 +52,23 @@ const ManageClasses = () => {
       .patch(`https://summer-camp-learning-school-server-olive.vercel.app/courses/${id}?feedback=${feedbackRef?.current?.value}`)
       .then((res) => {
         if (res.data.modifiedCount) {
-          alert("FeedBack has been sent");
+          Swal.fire({
+            position:'top-end',
+            icon:'success',
+            title:' Feedback sent successfully',
+            
+          })
+          refetch();
         }
       });
   };
   console.log(feedbackRef?.current?.value)
   return (
-    <div className="overflow-x-auto ">
+    <div>
+      <Helmet>
+        <title>SportifyCamp | ManageClasses</title>
+      </Helmet>
+      <div className="overflow-x-auto ">
       <table className="table min-w-full divide-y divide-white">
         <thead>
           <tr>
@@ -133,12 +156,7 @@ const ManageClasses = () => {
                     Deny
                   </button>
                   <br />
-                  {/* <button
-                      className="btn-delete btn-primary text-white rounded-sm font-semibold py-1 px-2"
-                    
-                    >
-                      feedback
-                    </button> */}
+                  
                  <button
                     onClick={() => {
                       setSelectedCourseId(selectedCourse?._id);
@@ -167,7 +185,7 @@ const ManageClasses = () => {
             ></textarea>
             <div className="modal-action">
               {/* if there is a button in the form, it will close the modal */}
-              <button className="btn btn-accent btn-outline btn-xs">
+              <button className="btn btn-primary btn-outline btn-xs">
                 Close
               </button>
               <button
@@ -183,6 +201,7 @@ const ManageClasses = () => {
         </dialog>
         </tbody>
       </table>
+    </div>
     </div>
   );
 };

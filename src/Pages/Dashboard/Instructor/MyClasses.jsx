@@ -3,6 +3,7 @@
 import { useQuery } from "@tanstack/react-query";
 import SectionTitle from "../../../Components/SectionTitle/SectionTitle";
 import useAuth from "../../../Hooks/useAuth";
+import { Helmet } from "react-helmet-async";
 // import { useRef, useState } from "react";
 // import axios from "axios";
 
@@ -10,7 +11,7 @@ const MyClasses = () => {
     const {user} = useAuth()
 
 
-    const { data: myClasses = []} = useQuery({
+    const { data: myClasses = [],refetch} = useQuery({
         queryKey: ["myClasses"],
         queryFn: async () => {
           const res = await fetch(`https://summer-camp-learning-school-server-olive.vercel.app/instructorsCourses/${user?.email}`);
@@ -18,13 +19,17 @@ const MyClasses = () => {
           return res.json();
           
         }, 
-        enabled: !!user,
        
+        
       });
+      refetch();
       
      
     return (
         <div>
+          <Helmet>
+        <title>SportifyCamp | MyClasses</title>
+      </Helmet>
         <SectionTitle  heading={'Classes'}></SectionTitle>
         <div className="overflow-x-auto">
         <table className="table min-w-full divide-y divide-gray-200">
@@ -89,7 +94,7 @@ const MyClasses = () => {
                   </td>
                   <td className="px-6 py-4 text-white text-[13px] text-end">
                     {/* <button className="btn btn-outline">FeedBack</button> */}
-                    <textarea readOnly className="bg-black p-2 rounded-md">{enrollClasse?.status=='deny'?enrollClasse?.feedback: ''}</textarea>
+                    <textarea readOnly className="bg-black p-2 rounded-md" value={enrollClasse?.status=='deny'?enrollClasse?.feedback: ''}></textarea>
                   </td>
                   <td className="px-6 py-4 text-white text-[13px] text-end">
                     <button className="btn btn-outline">Update</button>

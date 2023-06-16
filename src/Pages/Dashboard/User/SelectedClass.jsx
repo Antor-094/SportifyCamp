@@ -4,6 +4,8 @@ import axios from "axios";
 import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
+import SectionTitle from "../../../Components/SectionTitle/SectionTitle";
+import { Helmet } from "react-helmet-async";
 
 const SelectedClass = () => {
   const { user } = useAuth();
@@ -45,26 +47,31 @@ const SelectedClass = () => {
   };
 
   return (
-    <div className="overflow-x-auto">
+    <div>
+      <Helmet>
+        <title>SportifyCamp | SectedClasses</title>
+      </Helmet>
+      <SectionTitle heading='Selected Classes'></SectionTitle>
+      <div className="overflow-x-auto">
       <table className="table min-w-full divide-y divide-gray-200">
         <thead>
           <tr>
-            <th className="px-6 py-3 text-[16px] text-black font-semibold">
+            <th className="px-6 py-3 text-[16px] text-white font-semibold">
               SNo
             </th>
-            <th className="px-6 py-3 text-[16px] text-black font-semibold">
+            <th className="px-6 py-3 text-[16px] text-white font-semibold">
               Course Image
             </th>
-            <th className="px-6 py-3 text-[16px] text-black font-semibold">
+            <th className="px-6 py-3 text-[16px] text-white font-semibold">
               Course Name
             </th>
-            <th className="px-6 py-3 text-[16px] text-black font-semibold">
+            <th className="px-6 py-3 text-[16px] text-white font-semibold">
               Instructor Name
             </th>
-            <th className="px-6 py-3 text-[16px] text-black font-semibold">
+            <th className="px-6 py-3 text-[16px] text-white font-semibold">
               Price
             </th>
-            <th className="px-6 py-3 text-[16px] text-black font-semibold">
+            <th className="px-6 py-3 text-[16px] text-white font-semibold">
               Actions
             </th>
           </tr>
@@ -74,7 +81,7 @@ const SelectedClass = () => {
             // const course = courses.find((c) => c._id === selectedCourse.courseId);
             return (
               <tr key={selectedCourse._id}>
-                <td className="px-6 py-4 text-black text-[13px]">
+                <td className="px-6 py-4 text-white text-[13px]">
                   {index + 1}
                 </td>{" "}
                 {/* Serial number column */}
@@ -85,13 +92,13 @@ const SelectedClass = () => {
                     className="h-16 w-16 object-cover"
                   />
                 </td>
-                <td className="px-6 py-4 text-black text-[13px]">
+                <td className="px-6 py-4 text-white text-[13px]">
                   {selectedCourse?.courseName}
                 </td>
-                <td className="px-6 py-4 text-black text-[13px]">
+                <td className="px-6 py-4 text-white text-[13px]">
                   {selectedCourse?.instructorName}
                 </td>
-                <td className="px-6 py-4 text-black text-[13px] text-end">
+                <td className="px-6 py-4 text-white text-[13px] text-end">
                   ${selectedCourse?.price}
                 </td>
                 <td className="px-6 py-4 space-x-2">
@@ -112,6 +119,7 @@ const SelectedClass = () => {
           })}
         </tbody>
       </table>
+    </div>
     </div>
   );
 };

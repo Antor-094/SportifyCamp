@@ -5,6 +5,7 @@ import { useState } from "react";
 import useAuth from "../../Hooks/useAuth";
 import Swal from "sweetalert2";
 import SocialLogin from "../Shared/SocialLogin.jsx/SocialLogin";
+import { Helmet } from "react-helmet-async";
 
 const img_hosting_token = import.meta.env.VITE_imgbb;
 
@@ -91,7 +92,11 @@ const SignUp = () => {
   const passwordMismatch = password !== confirmPassword;
 
   return (
-    <div className="py-32 flex justify-center">
+    <div>
+      <Helmet>
+        <title>SportifyCamp | SignUp</title>
+      </Helmet>
+      <div className="py-32 flex justify-center">
       <div className="form-container w-[90%] md:w-[30%]">
         <p className="title">Sign Up</p>
         <form onSubmit={handleSubmit(onSubmit)} className="form">
@@ -220,6 +225,7 @@ const SignUp = () => {
           </Link>
         </p>
       </div>
+    </div>
     </div>
   );
 };

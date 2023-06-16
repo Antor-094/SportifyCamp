@@ -3,6 +3,7 @@
 import { useQuery } from "@tanstack/react-query";
 import SectionTitle from "../../Components/SectionTitle/SectionTitle";
 import InstructorsCard from "../../Components/card/InstructorsCard";
+import { Helmet } from "react-helmet-async";
 
 const Instructors = () => {
     const {data:users=[]}=useQuery({
@@ -17,6 +18,9 @@ const Instructors = () => {
     
     return (
       <div>
+        <Helmet>
+        <title>SportifyCamp | Instructors</title>
+      </Helmet>
         <SectionTitle
           heading="Instructors"
           // subHeading="Popular classes based on the number of students enroll"

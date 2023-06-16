@@ -4,6 +4,7 @@ import useAuth from "../../../Hooks/useAuth";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 import CheckoutForm from "./PaymentPage/CheckoutForm";
+import { Helmet } from "react-helmet-async";
 
 const stripePromise = loadStripe(import.meta.env.VITE_Payment_key);
 
@@ -24,6 +25,9 @@ console.log(selectedCourses)
 
   return (
     <div>
+      <Helmet>
+        <title>SportifyCamp | payment</title>
+      </Helmet>
       <Elements stripe={stripePromise}>
         <CheckoutForm paymentCourse={paymentCourse} price={price} />
       </Elements>

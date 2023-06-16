@@ -1,6 +1,6 @@
 .form-container {
   border-radius: 0.75rem;
-  background-color: #111827;
+  background-color: #717e95;
   padding: 2rem;
   color: rgba(243, 244, 246, 1);
 }
@@ -39,11 +39,11 @@
 }
 
 .input-groups input:focus {
-  border-color: rgba(167, 139, 250);
+  border-color: #65799b;
 }
 
 .login {
-  --color: #560bad;
+  --color: #65799b;
   font-family: inherit;
   display: inline-block;
   width: 8em;
@@ -87,14 +87,14 @@
 }
 
 .login:active:before {
-  background: #3a0ca3;
+  background: #65799b;
   transition: background 0s;
 }
 
 .social-message {
   display: flex;
   align-items: center;
-  padding-top: 1rem;
+  padding-top: 0.3rem;
 }
 
 .line {

@@ -1,10 +1,12 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useState } from "react";
-import "./Login.css";
+// import "./Login.css";
+import './Login.css'
 import { useForm } from "react-hook-form";
 import useAuth from "../../Hooks/useAuth";
 import SocialLogin from "../Shared/SocialLogin.jsx/SocialLogin";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet-async";
 
 const Login = () => {
   const { signIn } = useAuth();
@@ -42,7 +44,11 @@ const Login = () => {
   };
 
   return (
-    <div className="py-32 flex justify-center">
+    <div>
+      <Helmet>
+        <title>SportifyCamp | Login</title>
+      </Helmet>
+      <div className="py-32 flex justify-center">
       <div className="form-container w-[90%] md:w-[30%]">
         <p className="title">Login</p>
         <form onSubmit={handleSubmit(onSubmit)} className="form">
@@ -99,6 +105,7 @@ const Login = () => {
           </Link>
         </p>
       </div>
+    </div>
     </div>
   );
 };
