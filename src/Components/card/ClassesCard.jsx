@@ -6,6 +6,7 @@ import Swal from "sweetalert2";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import useAdmin from "../../Hooks/useAdmin";
 import useInstructor from "../../Hooks/useInstructor";
+import { motion } from "framer-motion";
 
 const ClassesCard = ({ course}) => {
   const { user } = useAuth();
@@ -85,56 +86,44 @@ const ClassesCard = ({ course}) => {
       selectedCourse.email === user?.email
     );
   });
-
+// console.log(course.availableSeats)
   return (
-    <div
-      className={`card bg-base-100 shadow-xl hover:shadow-2xl transform hover:-translate-y-1 hover:scale-105 transition duration-500 ${
-        course.availableSeats === 0 ? "bg-red-500" : ""
-      }`}
+    <motion.div className={`max-w-md p-2 shadow-md rounded-lg overflow-hidden hover:shadow-2xl  transform  ${
+      course.availableSeats === 0 ? "bg-red-600" : "bg-base-100 "
+    }`}
+    whileHover={{ scale: 1.05 }}
+    whileTap={{ scale: 0.95 }}
+    transition={{duration:0.6}}
     >
-      <figure className="h-1/2">
-        <img
-          src={course?.courseImage}
-          alt="Course"
-          className="object-cover w-full h-full"
-        />
-      </figure>
-      <div className="card-body flex flex-col justify-between">
-        <div>
-          <h2 className="card-title text-lg font-bold mb-2 text-[#65799b]">
-            {course?.courseName}
-          </h2>
-          <p className="text-sm text-[#65799b] font-semibold">
-            Instructor Name: {course?.instructorName}
-          </p>
-          <p className="text-sm text-[#65799b] font-semibold">
-            Available Seats: {course?.availableSeats}
-          </p>
-         
-          <p className="text-sm text-[#65799b] font-semibold">
-            Price: {course?.price}
-          </p>
-        </div>
-        <div className="card-actions justify-end">
-          {course.availableSeats === 0 ? (
-            <button className="btn btn-disabled bg-red-400 text-black mt-4" disabled>
-              Enroll Now
-              <FaArrowRight />
-            </button>
-          ) : isCourseSelected || isCourseEnrolled || isAdmin || isInstructor? (
-            <button className="btn btn-disabled bg-gray-400 text-black mt-4" disabled>
-              {isCourseEnrolled?'Enrolled':'Selected'}
-              <FaArrowRight />
-            </button>
-          ) : (
-            <button className="btn btn-primary mt-4" onClick={() => handleSelect(course)}>
-              Select Now
-              <FaArrowRight />
-            </button>
-          )}
-        </div>
-      </div>
+    
+    <img src={course?.courseImage} alt="Card" className="w-full h-64 md:h-72 object-cover" />
+    <div className="p-4">
+    <p className="text-sm text-[#65799b] font-semibold">Instructor Name: {course?.instructorName}</p>
+    <p className="text-sm text-[#65799b] font-semibold">Available Seats: {course?.availableSeats}</p>
+    <p className="text-sm text-[#65799b] font-semibold">Enroll Students: {course?.enrollStudents}</p>
+    <p className="text-sm text-[#65799b] font-semibold">Price: {course?.price}</p>
+    <div className="card-actions mt-4 flex justify-end">
+      {course.availableSeats === 0 ? (
+        <button className="btn btn-disabled bg-red-400 text-black" disabled>
+          Enroll Now <FaArrowRight className="ml-1" />
+        </button>
+      ) : isCourseSelected || isCourseEnrolled || isAdmin || isInstructor ? (
+        <button className="btn btn-disabled bg-gray-400 text-black opacity-[0.3]">
+          {isCourseEnrolled ? 'Enrolled' : ''} <FaArrowRight className="ml-1" />
+        </button>
+      ) : (
+        <button className="btn btn-primary" onClick={() => handleSelect(course)}>
+          Select Now <FaArrowRight className="ml-1" />
+        </button>
+      )}
     </div>
+    </div>
+  </motion.div>
+
+
+
+
+
   );
 };
 

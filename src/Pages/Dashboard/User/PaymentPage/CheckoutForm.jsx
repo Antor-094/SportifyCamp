@@ -78,6 +78,7 @@ const [cardError, setCardError] = useState("");
             courseId: paymentCourse?.courseId,
             courseImage:paymentCourse?.courseImage,
             instructorName:paymentCourse?.instructorName,
+            enrollStudents:paymentCourse?.enrollStudents,
             date: new Date(),
           };
           axios.post("http://localhost:5000/payments",payment)

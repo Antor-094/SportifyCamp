@@ -1,6 +1,6 @@
-import { useState } from 'react';
+// import { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { FaSun, FaMoon } from 'react-icons/fa';
+// import { FaSun, FaMoon } from 'react-icons/fa';
 import Banner from './Banner';
 import PopularClasses from './PopularClasses/PopularClasses';
 import ServicesDetails from './ServicesSection/ServicesDetails';
@@ -9,26 +9,26 @@ import Gallery from './Gallery/Gallery';
 import './Home.css';
 
 const Home = () => {
-  const [isDarkTheme, setIsDarkTheme] = useState(false);
+  // const [isDarkTheme, setIsDarkTheme] = useState(false);
 
-  const toggleTheme = () => {
-    setIsDarkTheme((prevTheme) => !prevTheme);
-  };
+  // const toggleTheme = () => {
+  //   setIsDarkTheme((prevTheme) => !prevTheme);
+  // };
 
-  const themeClass = isDarkTheme ? 'dark-theme' : 'light-theme';
+  // const themeClass = isDarkTheme ? 'dark-theme' : 'light-theme';
 
   return (
-    <div className={`home-container ${themeClass}`}>
+    <div className={`home-container`}>
       <Helmet>
         <title>SportifyCamp | Home</title>
       </Helmet>
       
-      <div className="lg:pt-20">
+      <div className="">
         <Banner />
-        <button onClick={toggleTheme} className="theme-toggle-btn absolute 
+        {/* <button onClick={toggleTheme} className="theme-toggle-btn absolute 
         left-8 top-20 md:left-20 md:top-28 ml-auto">
         {isDarkTheme ? <FaSun /> : <FaMoon />}
-      </button>
+      </button> */}
       </div>
       <div className="my-12">
         <PopularClasses />

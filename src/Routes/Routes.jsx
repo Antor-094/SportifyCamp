@@ -23,6 +23,7 @@ import AddClass from "../Pages/Dashboard/Instructor/AddClass";
 import AdminRoute from "./AdminRoute";
 import InstructorRoute from "./InstructorRoute";
 import Classes from "../Pages/Classes/Classes";
+import Instructors from "../Pages/Instructors/Instructors";
 
 
   const router = createBrowserRouter([
@@ -46,6 +47,10 @@ import Classes from "../Pages/Classes/Classes";
         {
             path:'/classes',
             element:<Classes></Classes>
+        },
+        {
+            path:'/instructors',
+            element:<Instructors></Instructors>
         }
       ]
     },

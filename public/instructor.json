@@ -1,38 +1,51 @@
 [
     {
-      "_id": "1",
+      
       "name": "Jennifer Brown",
-      "image": "https://media.istockphoto.com/id/475495254/photo/african-american-male-trainer-with-clipboard.jpg?s=612x612&w=0&k=20&c=iRLoPvv1BDr1J6m7DdX03MUmCxiqV_wtMuKX7W9KRCE=",
-      "email": "jennifer@example.com"
+      "email": "jennifer@example.com",
+      "photo": "https://media.istockphoto.com/id/475495254/photo/african-american-male-trainer-with-clipboard.jpg?s=612x612&w=0&k=20&c=iRLoPvv1BDr1J6m7DdX03MUmCxiqV_wtMuKX7W9KRCE=",
+      "role":"instructor"
+      
     },
     {
-      "_id": "2",
+      
       "name": "David Lee",
-      "image": "https://st2.depositphotos.com/1518767/11721/i/600/depositphotos_117213226-stock-photo-portrait-of-sports-teacher-using.jpg",
-      "email": "david@example.com"
+      "email": "david@example.com",
+      "photo": "https://st2.depositphotos.com/1518767/11721/i/600/depositphotos_117213226-stock-photo-portrait-of-sports-teacher-using.jpg",
+      "role":"instructor"
+
+      
     },
     {
-      "_id": "3",
+      
       "name": "Emily Wilson",
-      "image": "https://img.freepik.com/free-photo/sports-teacher-gym-class_23-2149070721.jpg?w=2000",
-      "email": "emily@example.com"
+      "email": "emily@example.com",
+      "photo": "https://img.freepik.com/free-photo/sports-teacher-gym-class_23-2149070721.jpg?w=2000",
+      "role":"instructor"
+      
     },
     {
-      "_id": "4",
+      
       "name": "Michael Davis",
-      "image": "https://st2.depositphotos.com/5479794/8039/i/950/depositphotos_80390852-stock-photo-sports-teacher.jpg",
-      "email": "michael@example.com"
+      "email": "michael@example.com",
+      "photo": "https://st2.depositphotos.com/5479794/8039/i/950/depositphotos_80390852-stock-photo-sports-teacher.jpg",
+      "role":"instructor"
+      
     },
     {
-      "_id": "5",
+      
       "name": "Sarah Johnson",
-      "image": "https://media.istockphoto.com/id/1135084417/photo/lady-basketball-coach-on-court.jpg?s=612x612&w=0&k=20&c=Fjgr35Jnvvyqd6z_yN0-MFePrALhqoEEvACn0-gCLnE=",
-      "email": "sarah@example.com"
+      "email": "sarah@example.com",
+      "photo": "https://media.istockphoto.com/id/1135084417/photo/lady-basketball-coach-on-court.jpg?s=612x612&w=0&k=20&c=Fjgr35Jnvvyqd6z_yN0-MFePrALhqoEEvACn0-gCLnE=",
+      "role":"instructor"
+      
     },
     {
-      "_id": "6",
+      
       "name": "John Smith",
-      "image": "https://c8.alamy.com/comp/FDA78K/a-male-sports-teacher-stands-outdoors-in-a-field-he-is-holding-a-clipboard-FDA78K.jpg",
-      "email": "john@example.com"
+      "email": "john@example.com",
+      "photo": "https://c8.alamy.com/comp/FDA78K/a-male-sports-teacher-stands-outdoors-in-a-field-he-is-holding-a-clipboard-FDA78K.jpg",
+      "role":"instructor"
+      
     }
   ]

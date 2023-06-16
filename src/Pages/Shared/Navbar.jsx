@@ -1,6 +1,6 @@
+import { useState, useEffect, useRef } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import useAuth from "../../Hooks/useAuth";
-import { useEffect, useRef, useState } from "react";
 
 const Navbar = ({ loggedIn, userProfilePicture }) => {
   const { logOut } = useAuth();
@@ -9,6 +9,32 @@ const Navbar = ({ loggedIn, userProfilePicture }) => {
   };
 
   const location = useLocation();
+
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+
+  const dropdownRef = useRef(null);
+
+  const toggleDropdown = () => {
+    setDropdownOpen(!dropdownOpen);
+  };
+
+  const closeDropdown = () => {
+    setDropdownOpen(false);
+  };
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        closeDropdown();
+      }
+    };
+
+    window.addEventListener("click", handleClickOutside);
+
+    return () => {
+      window.removeEventListener("click", handleClickOutside);
+    };
+  }, []);
 
   const options = (
     <>
@@ -49,54 +75,48 @@ const Navbar = ({ loggedIn, userProfilePicture }) => {
     </>
   );
 
-  const [isNavbarVisible, setIsNavbarVisible] = useState(true);
-  const prevScrollPos = useRef(window.pageYOffset);
-
-  const handleScroll = () => {
-    const currentScrollPos = window.pageYOffset;
-    const isScrolledUp = prevScrollPos.current > currentScrollPos;
-
-    setIsNavbarVisible(isScrolledUp || currentScrollPos === 0);
-    prevScrollPos.current = currentScrollPos;
-  };
-
-  useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
-
   return (
-    <nav
-      style={{
-        transition: "transform 0.3s ease-in-out",
-        transform: isNavbarVisible ? "translateY(0)" : "translateY(-100%)",
-      }}
-      className="navbar bg-white md:fixed sticky z-10 bg-opacity-[0.7] container rounded-md"
-    >
+    <nav className="navbar bg-white sticky z-10 bg-opacity-[0.7] container rounded-md">
       <div className="navbar-start">
-        <div className="dropdown">
-          <label tabIndex={0} className="btn btn-ghost lg:hidden">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-5 w-5 text-black "
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M4 6h16M4 12h8m-8 6h16"
-              />
-            </svg>
+        <div className="dropdown" ref={dropdownRef}>
+          <label tabIndex={0} className="btn btn-ghost lg:hidden" onClick={toggleDropdown}>
+            {dropdownOpen ? (
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-5 w-5 text-black"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              </svg>
+            ) : (
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-5 w-5 text-black"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M4 6h16M4 12h8m-8 6h16"
+                />
+              </svg>
+            )}
           </label>
           <ul
             tabIndex={0}
-            className="menu menu-compact dropdown-content text-white mt-3 p-2 shadow bg-[#111827] rounded-box w-52"
+            className={`menu menu-compact dropdown-content text-white mt-3 p-2 shadow bg-[#111827] rounded-box w-52 ${
+              dropdownOpen ? "block" : "hidden"
+            }`}
           >
             {options}
           </ul>
